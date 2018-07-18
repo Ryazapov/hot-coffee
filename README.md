@@ -1,5 +1,32 @@
 # Hot Coffee
 
+[![Build Status](https://semaphoreci.com/api/v1/ryazapov/hot-coffee-3/branches/integration/badge.svg)](https://semaphoreci.com/ryazapov/hot-coffee-3)
+
+## Quick Start
+
+```bash
+# clone repo
+git clone git@github.com:Ryazapov/hot-coffee.git
+cd hot-coffee
+```
+
+Paste environment variables to .env file
+
+```
+# run setup script
+bin/setup
+
+# run server on 5000 port
+bin/server
+```
+
+## Scripts
+
+* `bin/setup` - setup required gems and migrate db if needed
+* `bin/quality` - runs rubocop, brakeman, rails_best_practices and bundle-audit for the app
+* `bin/ci` - should be used in the CI or locally
+* `bin/server` - to run server locally
+
 ## Application Gems
 
 * [Sass](https://github.com/rails/sass-rails) for Sass/Scss stylesheets
@@ -53,25 +80,3 @@
 
 * `mailer.rb` - setup default hosts for mailer from configuration
 * `requires.rb` - automatically requires everything in lib/ & lib/extensions
-
-## Scripts
-
-* `bin/setup` - setup required gems and migrate db if needed
-* `bin/quality` - runs rubocop, brakeman, rails_best_practices and bundle-audit for the app
-* `bin/ci` - should be used in the CI or locally
-* `bin/server` - to run server locally
-
-## Getting Started
-
-### Prepare dependencies
-
-Some gems have native extensions.
-You should have GCC installed on your development machine.
-
-* `graphviz` - to generate Entity-Relationship Diagram
-
-Setup required dependencies from `Brewfile`:
-```bash
-brew tap Homebrew/bundle
-brew bundle
-```
