@@ -2,6 +2,14 @@
 
 [![Build Status](https://semaphoreci.com/api/v1/ryazapov/hot-coffee-3/branches/integration/badge.svg)](https://semaphoreci.com/ryazapov/hot-coffee-3)
 
+## Staging
+
+Link: https://very-hot-coffee-staging.herokuapp.com/
+
+## Production
+
+Link: https://very-hot-coffee.herokuapp.com/
+
 ## Quick Start
 
 ```bash
