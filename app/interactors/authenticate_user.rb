@@ -1,7 +1,7 @@
 class AuthenticateUser
   include Interactor
 
-  delegate :user_params, to: context
+  delegate :user_params, to: :context
 
   def call
     context.user = find_or_create_user
@@ -23,6 +23,6 @@ class AuthenticateUser
   end
 
   def create_provider
-    context.user.providers.first_or_create(name: user_params.provider, uid: user_params.uid)
+    context.user.providers.first_or_create(name: user_params[:provider], uid: user_params[:uid])
   end
 end
