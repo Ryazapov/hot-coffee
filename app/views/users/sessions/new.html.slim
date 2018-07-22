@@ -23,5 +23,8 @@
       .form-actions
         = f.button :submit, "Sign in"
 
+      = link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path
+
+
   .medium-5.medium-offset-1.columns.end
     = render "users/shared/links"

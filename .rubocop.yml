@@ -27,6 +27,9 @@ RSpec/ExampleLength:
 RSpec/RepeatedDescription:
   Enabled: false
 
+RSpec/LetSetup:
+  Enabled: false  
+
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
