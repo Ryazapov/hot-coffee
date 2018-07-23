@@ -1,6 +1,4 @@
-module Helpers::OmniAuth
-  OmniAuth.config.test_mode = true
-
+module OmniAuthHelpers
   def facebook_with_valid_credentials
     OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(
       provider: "facebook",
