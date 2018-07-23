@@ -1,0 +1,21 @@
+.row
+  .columns
+    h2 = title("Edit #{coffee_house.name}")
+
+.row
+  .medium-5.columns
+    = simple_form_for(coffee_house) do |f|
+
+      .form-inputs
+        = f.input :name, required: true, autofocus: true
+        = f.input :description, as: :ckeditor
+
+      .form-actions
+        = f.button :submit, "Update"
+
+  .medium-5.medium-offset-1.columns.end
+    p
+      = link_to "Delete #{coffee_house.name}",
+          coffee_house(coffee_house),
+          data: { confirm: "Are you sure?" },
+          method: :delete

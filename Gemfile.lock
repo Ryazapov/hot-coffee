@@ -90,7 +90,13 @@ GEM
     chromedriver-helper (1.2.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    ckeditor (4.2.4)
+      cocaine
+      orm_adapter (~> 0.5.0)
+    climate_control (0.2.0)
     cliver (0.3.2)
+    cocaine (0.6.0)
+      terrapin (= 0.6.0)
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -158,6 +164,7 @@ GEM
       sass (>= 3.3.0, < 3.5)
       sprockets-es6 (>= 0.9.0)
     foundation_emails (2.2.1.0)
+    geocoder (1.4.9)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     google-analytics-rails (1.1.1)
@@ -404,6 +411,8 @@ GEM
     sysexits (1.2.0)
     temple (0.7.7)
     terminal-notifier-guard (1.7.0)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.6)
@@ -443,6 +452,7 @@ DEPENDENCIES
   byebug
   capybara
   chromedriver-helper
+  ckeditor
   coffee-rails
   coffeelint
   decent_decoration
@@ -457,6 +467,7 @@ DEPENDENCIES
   formulaic
   foundation-icons-sass-rails
   foundation-rails
+  geocoder
   google-analytics-rails
   guard-rspec
   health_check

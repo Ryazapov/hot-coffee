@@ -1,0 +1,14 @@
+.row
+  .columns
+    h2 = title("New Coffee House")
+
+.row
+  .medium-5.columns
+    = simple_form_for(coffee_house) do |f|
+
+      .form-inputs
+        = f.input :name, required: true, autofocus: true
+        = f.input :description, as: :ckeditor
+
+      .form-actions
+        = f.button :submit, "Create"
