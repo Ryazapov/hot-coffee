@@ -4,29 +4,55 @@ feature "Sign In" do
   let(:user) { create :user }
   let(:unconfirmed_user) { create :user, :not_confirmed }
 
-  def sign_in(email, password)
+  scenario "Visitor signs in with valid credentials" do
     visit new_user_session_path
 
-    fill_form(:user, email: email, password: password)
+    fill_form(:user, email: user.email, password: user.password)
     click_button "Sign in"
-  end
-
-  scenario "Visitor signs in with valid credentials" do
-    sign_in(user.email, user.password)
 
     expect(page).to have_content("Signed in successfully.")
   end
 
   scenario "Visitor signs in with invalid credentials" do
-    sign_in(user.email, "wrong password")
+    visit new_user_session_path
+
+    fill_form(:user, email: user.email, password: "wrong password")
+    click_button "Sign in"
 
     expect(page).to have_content("Sign in")
     expect(page).to have_content("Invalid Email or password")
   end
 
   scenario "Visitor signs in with unconfirmed email address" do
-    sign_in(unconfirmed_user.email, user.password)
+    visit new_user_session_path
+
+    fill_form(:user, email: unconfirmed_user.email, password: unconfirmed_user.password)
+    click_button "Sign in"
 
     expect(page).to have_content("You have to confirm your email address before continuing.")
+  end
+
+  context "when visitor has facebook account" do
+    before { facebook_with_valid_credentials }
+
+    scenario "Visitor signs in with facebook" do
+      visit new_user_session_path
+
+      click_link "Sign in with Facebook"
+
+      expect(page).to have_content("Successfully authenticated from Facebook account.")
+    end
+  end
+
+  context "when visitor has facebook account" do
+    before { facebook_with_invalid_credentials }
+
+    scenario "Visitor cannot signs in with facebook" do
+      visit new_user_session_path
+
+      click_link "Sign in with Facebook"
+
+      expect(page).to have_content("Could not authenticate you from Facebook because \"Invalid credentials\".")
+    end
   end
 end

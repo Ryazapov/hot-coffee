@@ -1,7 +1,7 @@
-class AuthenticateUser
+class FindOrCreateUser
   include Interactor
 
-  delegate :user_params, to: :context
+  delegate :user, :provider, :user_params, to: :context
 
   def call
     context.user = find_or_create_user

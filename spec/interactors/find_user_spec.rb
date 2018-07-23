@@ -9,7 +9,7 @@ describe FindUser do
 
   let(:user_params) do
     {
-      provider: "Facebook",
+      provider: "facebook",
       uid: provider.uid,
       info: {
         email: "john.smith@example.com"
@@ -37,7 +37,7 @@ describe FindUser do
   context "when such a user does not exist" do
     let(:user_params) do
       {
-        provider: "Facebook",
+        provider: "facebook",
         uid: "another uid",
         info: {
           email: "another.user@example.com"

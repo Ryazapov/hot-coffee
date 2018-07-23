@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :provider, aliases: %i[facebook_provider] do
-    name "Facebook"
+    name "facebook"
     uid { SecureRandom.uuid }
 
     association :user, strategy: :build

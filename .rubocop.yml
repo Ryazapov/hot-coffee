@@ -28,7 +28,7 @@ RSpec/RepeatedDescription:
   Enabled: false
 
 RSpec/LetSetup:
-  Enabled: false  
+  Enabled: false
 
 RSpec/MessageSpies:
   EnforcedStyle: receive
@@ -63,6 +63,9 @@ Style/FrozenStringLiteralComment:
 
 Style/StringMethods:
   Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false  
 
 Metrics/LineLength:
   Max: 120
