@@ -10,7 +10,8 @@
     "RACK_ENV": { "required": true },
     "RAILS_ENV": { "required": true },
     "RAILS_SERVE_STATIC_FILES": { "required": true },
-    "SECRET_KEY_BASE": { "generator": "secret" }
+    "SECRET_KEY_BASE": { "generator": "secret" },
+    "GOOGLE_API_KEY": { "required": true }
   },
   "addons": [
     "heroku-postgresql",

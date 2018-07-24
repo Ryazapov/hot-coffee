@@ -9,7 +9,9 @@
 #= require foundation
 #= require current_user
 #= require ckeditor/init
+#= require map
 #= require_tree ../templates
 #= require_tree .
 
 $(document).foundation()
+$(".map").initMap()
