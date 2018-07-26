@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20180723185905) do
     t.float "latitude", null: false
     t.float "longitude", null: false
     t.string "description"
-    t.bigint "owner_id"
+    t.bigint "owner_id", null: false
     t.index ["latitude", "longitude"], name: "index_coffee_houses_on_latitude_and_longitude"
     t.index ["name"], name: "index_coffee_houses_on_name"
     t.index ["owner_id"], name: "index_coffee_houses_on_owner_id"

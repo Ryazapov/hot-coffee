@@ -9,6 +9,10 @@
       .form-inputs
         = f.input :name, required: true, autofocus: true
         = f.input :description, as: :ckeditor
+        = f.input :latitude, as: :hidden
+        = f.input :longitude, as: :hidden
+
+        .location-input
 
       .form-actions
         = f.button :submit, "Update"

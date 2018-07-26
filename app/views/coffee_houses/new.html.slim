@@ -3,11 +3,17 @@
     h2 = title("New Coffee House")
 
 .row
-  .medium-5.columns
-    = simple_form_for(coffee_house) do |f|
-
+  = simple_form_for(coffee_house) do |f|
+    .medium-5.columns
       .form-inputs
         = f.input :name, required: true, autofocus: true
+        = f.input :latitude, as: :hidden
+        = f.input :longitude, as: :hidden
+
+    .medium-12.columns
+      .location-input
+
+      .form-inputs
         = f.input :description, as: :ckeditor
 
       .form-actions

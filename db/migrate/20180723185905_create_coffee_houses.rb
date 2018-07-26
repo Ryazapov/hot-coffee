@@ -6,7 +6,7 @@ class CreateCoffeeHouses < ActiveRecord::Migration[5.1]
       t.float :longitude, null: false
       t.string :description
 
-      t.belongs_to :owner
+      t.belongs_to :owner, null: false
     end
 
     add_index :coffee_houses, %i[latitude longitude]

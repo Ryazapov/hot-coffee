@@ -9,9 +9,9 @@
 #= require foundation
 #= require current_user
 #= require ckeditor/init
-#= require map
+#= require location_input
 #= require_tree ../templates
 #= require_tree .
 
 $(document).foundation()
-$(".map").initMap()
+$(".location-input").initLocationInput()
