@@ -2,23 +2,29 @@ class LocationInput
   KAZAN_LATITUDE = 55.788258
   KAZAN_LONGITUDE = 49.119290
 
+  LATITUDE_INPUT_SELECTOR = "#coffee_house_latitude"
+  LONGITUDE_INPUT_SELECTOR = "#coffee_house_longitude"
+
   constructor: (@$el) ->
+    @latitude_input = $(LATITUDE_INPUT_SELECTOR)
+    @longitude_input = $(LONGITUDE_INPUT_SELECTOR)
+
     @_setupMap()
-    @_bindEvents()
-    @_changeCenterCoords()
+    @_isNewForm()
 
   _setupMap: =>
-    center = new google.maps.LatLng(KAZAN_LATITUDE, KAZAN_LONGITUDE)
-    mapOptions =
-      zoom: 15
-      center: center
-
-    @map = new google.maps.Map(@$el.context, mapOptions)
-
-  _bindEvents: =>
+    @map = new google.maps.Map(@$el.context, @_mapOptions())
     @map.addListener("click", @_addMarker)
+    @_changeCenterCoords()
+
+  _mapOptions: =>
+    zoom: 15
+    center: @_centerLatLng()
 
   _addMarker: (event) =>
+    @latitude_input.val(event.latLng.lat)
+    @longitude_input.val(event.latLng.lng)
+
     if @marker
       @marker.setPosition(event.latLng)
     else
@@ -31,7 +37,15 @@ class LocationInput
 
     navigator.geolocation.getCurrentPosition (position) =>
       center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-      @map.setCenter(center)
+      @map.setCenter(center) if @_isNewForm()
+
+  _centerLatLng: =>
+    return new google.maps.LatLng(KAZAN_LATITUDE, KAZAN_LONGITUDE) if @_isNewForm()
+
+    new google.maps.LatLng(@latitude_input.val(), @longitude_input.val())
+
+  _isNewForm: =>
+    @latitude_input.val().length == 0 && @longitude_input.val().length == 0
 
 $.fn.initLocationInput = ->
   return $(@).each ->

@@ -14,6 +14,9 @@ class CoffeeHousesController < ApplicationController
     respond_with(coffee_house)
   end
 
+  def show
+  end
+
   def edit
   end
 
