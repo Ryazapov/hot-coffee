@@ -10,8 +10,10 @@
 #= require current_user
 #= require ckeditor/init
 #= require location_input
+#= require coffee_house_map
 #= require_tree ../templates
 #= require_tree .
 
 $(document).foundation()
 $(".location-input").initLocationInput()
+$(".coffee_house__map").initCoffeeHouseMap()

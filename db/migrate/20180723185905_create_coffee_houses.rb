@@ -4,6 +4,7 @@ class CreateCoffeeHouses < ActiveRecord::Migration[5.1]
       t.string :name, null: false, index: true
       t.float :latitude, null: false
       t.float :longitude, null: false
+      t.string :address, null: false
       t.string :description
 
       t.belongs_to :owner, null: false

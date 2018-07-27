@@ -1,5 +1,5 @@
 class CoffeeHousesController < ApplicationController
-  expose_decorated :coffee_houses, parent: :current_user
+  expose_decorated :coffee_houses, from: :current_user
   expose_decorated :coffee_house, parent: :current_user
 
   def index

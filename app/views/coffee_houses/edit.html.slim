@@ -3,16 +3,18 @@
     h2 = title("Edit #{coffee_house.name}")
 
 .row
-  .medium-5.columns
-    = simple_form_for(coffee_house) do |f|
-
+  = simple_form_for(coffee_house) do |f|
+    .medium-5.columns
       .form-inputs
         = f.input :name, required: true, autofocus: true
-        = f.input :description, as: :ckeditor
         = f.input :latitude, as: :hidden
         = f.input :longitude, as: :hidden
 
-        .location-input
+    .medium-12.columns
+      .location-input
+
+      .form-inputs
+        = f.input :description, as: :ckeditor
 
       .form-actions
         = f.button :submit, "Update"
@@ -20,6 +22,6 @@
   .medium-5.medium-offset-1.columns.end
     p
       = link_to "Delete #{coffee_house.name}",
-          coffee_house(coffee_house),
+          coffee_house_path(coffee_house),
           data: { confirm: "Are you sure?" },
           method: :delete

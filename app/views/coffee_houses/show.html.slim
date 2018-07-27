@@ -1,0 +1,10 @@
+.row
+  .columns
+    h2 = title(coffee_house.name)
+hr
+.row
+  .medium-10.columns
+    = coffee_house.description
+    = "Where to find us: #{coffee_house.address}"
+
+    .coffee-house__map data-coffee-houses=[coffee_house].to_json

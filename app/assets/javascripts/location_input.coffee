@@ -15,6 +15,7 @@ class LocationInput
   _setupMap: =>
     @map = new google.maps.Map(@$el.context, @_mapOptions())
     @map.addListener("click", @_addMarker)
+    @_addCurrentMarker()
     @_changeCenterCoords()
 
   _mapOptions: =>
@@ -31,6 +32,13 @@ class LocationInput
       @marker = new (google.maps.Marker)(
         position: event.latLng
         map: @map)
+
+  _addCurrentMarker: =>
+    return if @_isNewForm()
+
+    @marker = new (google.maps.Marker)(
+      position: new google.maps.LatLng(@latitude_input.val(), @longitude_input.val())
+      map: @map)
 
   _changeCenterCoords: =>
     return unless navigator.geolocation

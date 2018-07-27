@@ -1,5 +1,13 @@
 class CoffeeHouse < ApplicationRecord
-  belongs_to :owner, class_name: User
+  belongs_to :owner, class_name: "User"
 
-  validates :name, :latitude, :longitude, presence: true
+  geocoded_by :address
+  reverse_geocoded_by :latitude, :longitude
+  before_validation :reverse_geocode, if: :geoposition_changed?
+
+  validates :name, :latitude, :longitude, :address, presence: true
+
+  def geoposition_changed?
+    new_record? || address_changed? || latitude_changed? || longitude_changed?
+  end
 end
