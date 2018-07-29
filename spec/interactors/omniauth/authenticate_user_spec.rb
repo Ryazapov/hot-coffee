@@ -1,19 +1,24 @@
 require "rails_helper"
 
-describe FindOrCreateUser do
-  subject(:interactor_call) { described_class.call(user_params: user_params) }
+describe Omniauth::AuthenticateUser do
+  subject(:interactor_call) { described_class.call(auth_params: auth_params) }
   let(:user) { interactor_call.user }
   let(:provider) { interactor_call.provider }
 
-  let(:user_params) do
-    {
+  let(:auth_params) do
+    OmniAuth::AuthHash.new(
       provider: "facebook",
-      uid: "uid",
+      uid: "12345",
       info: {
-        name: "John Smith",
-        email: "john.smith@example.com"
+        email: "john.smith@example.com",
+        name: "John Smith"
+      },
+      extra: {
+        raw_info: {
+          verified: true
+        }
       }
-    }
+    )
   end
 
   it { expect { interactor_call }.to change(User, :count).by(1) }
@@ -28,7 +33,7 @@ describe FindOrCreateUser do
 
     expect(provider).to be_a_persisted
     expect(provider.name).to eq("facebook")
-    expect(provider.uid).to eq("uid")
+    expect(provider.uid).to eq("12345")
   end
 
   context "when user with this email already exists" do
@@ -46,13 +51,13 @@ describe FindOrCreateUser do
 
       expect(provider).to be_a_persisted
       expect(provider.name).to eq("facebook")
-      expect(provider.uid).to eq("uid")
+      expect(provider.uid).to eq("12345")
     end
   end
 
   context "when user with this provider already exists" do
     let!(:user) { create :user, email: "john.smith@example.com", full_name: "John Smith", providers: [provider] }
-    let(:provider) { create :facebook_provider, uid: "uid" }
+    let(:provider) { create :facebook_provider, uid: "12345" }
 
     it { expect { interactor_call }.not_to change(Provider, :count) }
     it { expect { interactor_call }.not_to change(User, :count) }
@@ -66,7 +71,7 @@ describe FindOrCreateUser do
 
       expect(provider).to be_a_persisted
       expect(provider.name).to eq("facebook")
-      expect(provider.uid).to eq("uid")
+      expect(provider.uid).to eq("12345")
     end
   end
 end

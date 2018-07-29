@@ -33,7 +33,7 @@ feature "Sign In" do
   end
 
   context "when visitor has facebook account" do
-    before { facebook_with_valid_credentials }
+    include_context :facebook_with_valid_credentials
 
     scenario "Visitor signs in with facebook" do
       visit new_user_session_path
@@ -45,7 +45,7 @@ feature "Sign In" do
   end
 
   context "when visitor has facebook account" do
-    before { facebook_with_invalid_credentials }
+    include_context :facebook_with_invalid_credentials
 
     scenario "Visitor cannot signs in with facebook" do
       visit new_user_session_path

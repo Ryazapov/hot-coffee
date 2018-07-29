@@ -1,19 +1,17 @@
 require "rails_helper"
 
-describe FindUser do
-  subject(:interactor_call) { described_class.call(user_params: user_params) }
+describe Omniauth::FindUser do
+  subject(:interactor_call) { described_class.call(auth_data: auth_data) }
   let(:found_user) { interactor_call.user }
 
   let!(:user) { create :user, email: "john.smith@example.com", full_name: "John Smith", providers: [provider] }
   let(:provider) { create :facebook_provider }
 
-  let(:user_params) do
+  let(:auth_data) do
     {
       provider: "facebook",
       uid: provider.uid,
-      info: {
-        email: "john.smith@example.com"
-      }
+      email: "john.smith@example.com"
     }
   end
 
@@ -35,7 +33,7 @@ describe FindUser do
   end
 
   context "when such a user does not exist" do
-    let(:user_params) do
+    let(:auth_data) do
       {
         provider: "facebook",
         uid: "another uid",
