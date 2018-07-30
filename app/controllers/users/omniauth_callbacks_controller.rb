@@ -12,7 +12,7 @@ module Users
     private
 
     def authenticate_user
-      @user ||= Omniauth::AuthenticateUser.call(auth_params: auth_params)
+      @authenticate_user ||= Omniauth::AuthenticateUser.call(auth_params: auth_params)
     end
 
     def auth_params

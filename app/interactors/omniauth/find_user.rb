@@ -4,13 +4,13 @@ class Omniauth::FindUser
   delegate :auth_data, to: :context
 
   def call
-    context.user = find_user_by_privider || find_user_by_email
+    context.user = find_user_by_provider || find_user_by_email
   end
 
   private
 
-  def find_user_by_privider
-    @find_user_by_privider ||= Provider.find_by(name: auth_data[:provider], uid: auth_data[:uid])&.user
+  def find_user_by_provider
+    @find_user_by_provider ||= Provider.find_by(name: auth_data[:provider], uid: auth_data[:uid])&.user
   end
 
   def find_user_by_email

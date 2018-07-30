@@ -7,14 +7,14 @@ class Omniauth::CreateUser
   def call
     return if user
 
-    context.user = created_user
+    context.user = create_user
 
-    context.fail!(error: I18n.t("interactors.error.invalid_auth_data")) if created_user.invalid?
+    context.fail!(error: I18n.t("interactors.error.invalid_auth_data")) if create_user.invalid?
   end
 
   private
 
-  def created_user
+  def create_user
     @create_user ||= User.create(user_params)
   end
 

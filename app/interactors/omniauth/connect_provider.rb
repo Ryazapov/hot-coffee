@@ -4,12 +4,12 @@ class Omniauth::ConnectProvider
   delegate :user, :auth_data, to: :context
 
   def call
-    context.provider = connected_provider
+    context.provider = connecte_provider
   end
 
   private
 
-  def connected_provider
+  def connecte_provider
     user.providers.first_or_create(provider_params)
   end
 
