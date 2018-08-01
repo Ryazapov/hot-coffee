@@ -1,12 +1,7 @@
 .facebook-button {
-  background: #3b5998;
-  color:white;
-  border:0px transparent;
-  text-align: center;
   display: inline-block;
-
-  &:hover{
-     background: #3b5998;
-     opacity: 0.6;
-  }
+  border: 0 transparent;
+  background: $facebook-blue;
+  color: $white;
+  text-align: center;
 }
