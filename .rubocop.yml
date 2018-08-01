@@ -33,6 +33,9 @@ RSpec/LetSetup:
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
+RSpec/NestedGroups:
+  Max: 5
+
 Style/AndOr:
   Enabled: false
 
@@ -65,7 +68,7 @@ Style/StringMethods:
   Enabled: true
 
 Style/ClassAndModuleChildren:
-  Enabled: false  
+  Enabled: false
 
 Metrics/LineLength:
   Max: 120

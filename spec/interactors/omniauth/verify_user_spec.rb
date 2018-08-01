@@ -11,7 +11,7 @@ describe Omniauth::VerifyUser do
       }
     end
 
-    it { is_expected.to be_a_success }
+    it { is_expected.to be_success }
 
     context "when user not verified" do
       let(:auth_data) do
@@ -22,7 +22,7 @@ describe Omniauth::VerifyUser do
       end
 
       it "failures with error message" do
-        is_expected.to be_a_failure
+        is_expected.to be_failure
 
         expect(interactor_call.error).to eq("Your facebook account is not verified")
       end

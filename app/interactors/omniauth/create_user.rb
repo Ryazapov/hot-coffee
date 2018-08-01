@@ -9,7 +9,7 @@ class Omniauth::CreateUser
 
     context.user = create_user
 
-    context.fail!(error: I18n.t("interactors.error.invalid_auth_data")) if create_user.invalid?
+    context.fail!(error: I18n.t("interactors.error.invalid_auth_data")) if user.invalid?
   end
 
   private

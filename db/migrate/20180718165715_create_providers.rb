@@ -7,7 +7,7 @@ class CreateProviders < ActiveRecord::Migration[5.1]
       t.belongs_to :user
     end
 
-    add_index :providers, [:name, :uid], unique: true
-    add_index :providers, [:name, :user_id], unique: true
+    add_index :providers, %i[uid name], unique: true
+    add_index :providers, %i[user_id name], unique: true
   end
 end
