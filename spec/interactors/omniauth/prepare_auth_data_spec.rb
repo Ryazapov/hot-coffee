@@ -13,11 +13,6 @@ describe Omniauth::PrepareAuthData do
           info: {
             email: "john.smith@example.com",
             name: "John Smith"
-          },
-          extra: {
-            raw_info: {
-              verified: true
-            }
           }
         )
       end
@@ -27,8 +22,7 @@ describe Omniauth::PrepareAuthData do
           provider: "facebook",
           uid: "12345",
           email: "john.smith@example.com",
-          name: "John Smith",
-          verified: true
+          name: "John Smith"
         }
       end
 
@@ -46,11 +40,6 @@ describe Omniauth::PrepareAuthData do
             info: {
               email: "",
               name: ""
-            },
-            extra: {
-              raw_info: {
-                verified: true
-              }
             }
           )
         end

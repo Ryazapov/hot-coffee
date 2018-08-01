@@ -9,8 +9,7 @@ describe Omniauth::CreateUser do
         provider: "facebook",
         uid: "12345",
         email: "john.smith@example.com",
-        name: "John Smith",
-        verified: false
+        name: "John Smith"
       }
     end
 
@@ -40,8 +39,7 @@ describe Omniauth::CreateUser do
         {
           provider: "facebook",
           uid: "12345",
-          name: "John Smith",
-          verified: true
+          name: "John Smith"
         }
       end
 

@@ -233,7 +233,7 @@ Devise.setup do |config|
   config.omniauth :facebook,
     ENV.fetch("FACEBOOK_APP_ID"),
     ENV.fetch("FACEBOOK_APP_SECRET"),
-    info_fields: "email, name, verified",
+    info_fields: "email, name",
     locale: "en"
 
   # ==> Warden configuration

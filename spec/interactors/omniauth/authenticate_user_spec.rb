@@ -4,7 +4,6 @@ describe Omniauth::AuthenticateUser do
   let(:expected_interactors) do
     [
       Omniauth::PrepareAuthData,
-      Omniauth::VerifyUser,
       Omniauth::FindUser,
       Omniauth::CreateUser,
       Omniauth::ConfirmUser,

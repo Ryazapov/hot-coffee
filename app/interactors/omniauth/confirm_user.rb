@@ -4,6 +4,6 @@ class Omniauth::ConfirmUser
   delegate :user, to: :context
 
   def call
-    user.confirm unless user.confirmed?
+    user.send_confirmation_instructions unless user.confirmed?
   end
 end

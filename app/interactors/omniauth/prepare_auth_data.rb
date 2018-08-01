@@ -4,7 +4,7 @@ class Omniauth::PrepareAuthData
   delegate :auth_params, :auth_data, to: :context
   delegate :provider, :uid, to: :auth_params
 
-  REQUIRED_PARAMS = %i[provider uid email name verified].freeze
+  REQUIRED_PARAMS = %i[provider uid email name].freeze
 
   def call
     context.auth_data = prepare_auth_data
@@ -33,8 +33,7 @@ class Omniauth::PrepareAuthData
       provider: provider,
       uid: uid,
       email: auth_params[:info][:email],
-      name: auth_params[:info][:name],
-      verified: auth_params[:extra][:raw_info][:verified]
+      name: auth_params[:info][:name]
     }
   end
 end
