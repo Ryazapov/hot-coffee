@@ -1,0 +1,5 @@
+en:
+  interactors:
+    error:
+      verification: 'Your %{provider} account is not verified'
+      invalid_auth_data: Can not create a user with the provided data

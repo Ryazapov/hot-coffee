@@ -1,7 +1,4 @@
 class CoffeeHouseMap
-  KAZAN_LATITUDE = 55.788258
-  KAZAN_LONGITUDE = 49.119290
-
   constructor: (@$el) ->
     @_setupMap()
 
@@ -13,7 +10,7 @@ class CoffeeHouseMap
 
   _mapOptions: =>
     zoom: 15
-    center: new google.maps.LatLng(KAZAN_LATITUDE, KAZAN_LONGITUDE)
+    center: @_coffeeHouseLatLng()
 
   _addUserMarker: =>
     return unless navigator.geolocation

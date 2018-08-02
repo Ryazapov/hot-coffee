@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20180723185905) do
     t.index ["owner_id"], name: "index_coffee_houses_on_owner_id"
   end
 
+  create_table "providers", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "uid", null: false
+    t.bigint "user_id", null: false
+    t.index ["uid", "name"], name: "index_providers_on_uid_and_name", unique: true
+    t.index ["user_id", "name"], name: "index_providers_on_user_id_and_name", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -49,4 +57,5 @@ ActiveRecord::Schema.define(version: 20180723185905) do
   end
 
   add_foreign_key "coffee_houses", "users", column: "owner_id"
+  add_foreign_key "providers", "users"
 end
