@@ -27,8 +27,14 @@ RSpec/ExampleLength:
 RSpec/RepeatedDescription:
   Enabled: false
 
+RSpec/LetSetup:
+  Enabled: false
+
 RSpec/MessageSpies:
   EnforcedStyle: receive
+
+RSpec/NestedGroups:
+  Max: 5
 
 Style/AndOr:
   Enabled: false
@@ -60,6 +66,9 @@ Style/FrozenStringLiteralComment:
 
 Style/StringMethods:
   Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false
 
 Metrics/LineLength:
   Max: 120

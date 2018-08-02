@@ -10,7 +10,9 @@
     "RACK_ENV": { "required": true },
     "RAILS_ENV": { "required": true },
     "RAILS_SERVE_STATIC_FILES": { "required": true },
-    "SECRET_KEY_BASE": { "generator": "secret" }
+    "SECRET_KEY_BASE": { "generator": "secret" },
+    "FACEBOOK_APP_ID": { "required": true },
+    "FACEBOOK_APP_SECRET": { "required": true}
   },
   "addons": [
     "heroku-postgresql",
