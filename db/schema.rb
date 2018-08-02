@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20180718165715) do
   create_table "providers", force: :cascade do |t|
     t.string "name", null: false
     t.string "uid", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.index ["uid", "name"], name: "index_providers_on_uid_and_name", unique: true
     t.index ["user_id", "name"], name: "index_providers_on_user_id_and_name", unique: true
   end
