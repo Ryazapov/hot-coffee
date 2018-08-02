@@ -22,7 +22,8 @@ class Omniauth::CreateUser
     {
       email: auth_data[:email],
       password: Devise.friendly_token[0, 20],
-      full_name: auth_data[:name]
+      full_name: auth_data[:name],
+      confirmed_at: Time.current
     }
   end
 end

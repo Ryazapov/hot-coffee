@@ -42,17 +42,17 @@ feature "Sign In" do
 
       expect(page).to have_content("Successfully authenticated from Facebook account.")
     end
-  end
 
-  context "when visitor has facebook account" do
-    include_context :facebook_with_invalid_credentials
+    context "when credentials is invalid" do
+      include_context :facebook_with_invalid_credentials
 
-    scenario "Visitor cannot signs in with facebook" do
-      visit new_user_session_path
+      scenario "Visitor cannot signs in with facebook" do
+        visit new_user_session_path
 
-      click_link "Sign in with Facebook"
+        click_link "Sign in with Facebook"
 
-      expect(page).to have_content("Could not authenticate you from Facebook because \"Invalid credentials\".")
+        expect(page).to have_content("Could not authenticate you from Facebook because \"Invalid credentials\".")
+      end
     end
   end
 end

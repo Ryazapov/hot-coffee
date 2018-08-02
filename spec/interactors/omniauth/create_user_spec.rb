@@ -21,11 +21,7 @@ describe Omniauth::CreateUser do
       expect(created_user).to be_persisted
       expect(created_user.email).to eq("john.smith@example.com")
       expect(created_user.full_name).to eq("John Smith")
-
-      open_email(created_user.email)
-
-      expect(current_email).to have_subject("Confirmation instructions")
-      expect(current_email).to have_body_text(created_user.full_name)
+      expect(created_user).to be_confirmed
     end
 
     context "when user already exists" do

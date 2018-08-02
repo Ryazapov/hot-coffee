@@ -6,11 +6,6 @@ shared_context :facebook_with_valid_credentials do
       info: {
         email: "john.smith@example.com",
         name: "John Smith"
-      },
-      extra: {
-        raw_info: {
-          verified: true
-        }
       }
     )
   end

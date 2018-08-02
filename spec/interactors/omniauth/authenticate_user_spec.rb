@@ -6,6 +6,7 @@ describe Omniauth::AuthenticateUser do
       Omniauth::PrepareAuthData,
       Omniauth::FindUser,
       Omniauth::CreateUser,
+      Omniauth::ConfirmUser,
       Omniauth::ConnectProvider
     ]
   end
