@@ -1,10 +1,10 @@
 class Omniauth::PrepareAuthData
   include Interactor
 
-  delegate :auth_params, :auth_data, to: :context
-  delegate :provider, :uid, to: :auth_params
-
   REQUIRED_PARAMS = %i[provider uid email name].freeze
+
+  delegate :auth_params, to: :context
+  delegate :provider, :uid, to: :auth_params
 
   def call
     context.auth_data = prepare_auth_data
@@ -16,8 +16,6 @@ class Omniauth::PrepareAuthData
 
   def prepare_auth_data
     send("#{provider}_auth_data")
-  rescue
-    context.fail!(error: I18n.t("interactors.error.invalid_auth_data"))
   end
 
   def valid_auth_data?
@@ -25,15 +23,15 @@ class Omniauth::PrepareAuthData
   end
 
   def valid_value?(key)
-    auth_data[key].to_s.present?
+    context.auth_data[key].to_s.present?
   end
 
   def facebook_auth_data
     {
       provider: provider,
       uid: uid,
-      email: auth_params[:info][:email],
-      name: auth_params[:info][:name]
+      email: auth_params.dig(:info, :email),
+      name: auth_params.dig(:info, :name)
     }
   end
 end

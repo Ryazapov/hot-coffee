@@ -32,7 +32,7 @@ describe Omniauth::PrepareAuthData do
         expect(auth_data).to eq(expeted_auth_data)
       end
 
-      context "when auth params is invalid" do
+      context "when auth params are invalid" do
         let(:auth_params) do
           OmniAuth::AuthHash.new(
             provider: "facebook",
