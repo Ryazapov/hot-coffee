@@ -4,7 +4,7 @@ class CreateProviders < ActiveRecord::Migration[5.1]
       t.string :name, null: false
       t.string :uid, null: false
 
-      t.belongs_to :user
+      t.belongs_to :user, foreign_key: true, index: false, on_delete: :cascade
     end
 
     add_index :providers, %i[uid name], unique: true
