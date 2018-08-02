@@ -23,17 +23,7 @@ ActiveRecord::Schema.define(version: 20180723185905) do
     t.string "description"
     t.bigint "owner_id", null: false
     t.index ["latitude", "longitude"], name: "index_coffee_houses_on_latitude_and_longitude"
-    t.index ["name"], name: "index_coffee_houses_on_name"
     t.index ["owner_id"], name: "index_coffee_houses_on_owner_id"
-  end
-
-  create_table "providers", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "uid", null: false
-    t.bigint "user_id"
-    t.index ["name", "uid"], name: "index_providers_on_name_and_uid", unique: true
-    t.index ["name", "user_id"], name: "index_providers_on_name_and_user_id", unique: true
-    t.index ["user_id"], name: "index_providers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,4 +48,5 @@ ActiveRecord::Schema.define(version: 20180723185905) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "coffee_houses", "users", column: "owner_id"
 end

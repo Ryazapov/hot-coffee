@@ -16,4 +16,4 @@
 
 $(document).foundation()
 $(".location-input").initLocationInput()
-$(".coffee_house__map").initCoffeeHouseMap()
+$(".coffee-house__map").initCoffeeHouseMap()

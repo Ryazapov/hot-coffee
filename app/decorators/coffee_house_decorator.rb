@@ -5,6 +5,6 @@ class CoffeeHouseDecorator < ApplicationDecorator
   decorates_association :owner
 
   def description
-    object.description.html_safe
+    object.description&.html_safe
   end
 end
