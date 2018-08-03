@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :coffee_houses
+  namespace :manage do
+    resources :coffee_houses
+  end
 end

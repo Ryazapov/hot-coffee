@@ -9,6 +9,7 @@ GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
+    action_policy (0.2.3)
     actioncable (5.1.2)
       actionpack (= 5.1.2)
       nio4r (~> 2.0)
@@ -147,8 +148,8 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
-    faker (1.7.3)
-      i18n (~> 0.5)
+    faker (1.9.1)
+      i18n (>= 0.7)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
@@ -286,8 +287,6 @@ GEM
       pry (>= 0.9.10)
     public_suffix (3.0.2)
     puma (3.9.1)
-    pundit (1.1.0)
-      activesupport (>= 3.0.0)
     rack (2.0.5)
     rack-canonical-host (0.2.2)
       addressable (> 0, < 3)
@@ -463,6 +462,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  action_policy
   active_link_to
   autoprefixer-rails
   awesome_print
@@ -506,7 +506,6 @@ DEPENDENCIES
   premailer-rails
   pry-rails
   puma
-  pundit
   rack-canonical-host
   rack-mini-profiler!
   rails (= 5.1.2)

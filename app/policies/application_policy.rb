@@ -1,8 +1,4 @@
-class ApplicationPolicy
-  attr_reader :user, :record
-
-  def initialize(user, record)
-    @user = user
-    @record = record.to_model
-  end
+class ApplicationPolicy < ActionPolicy::Base
+  alias_rule :new?, to: :create?
+  alias_rule :edit?, to: :update?
 end

@@ -19,11 +19,13 @@ class CoffeeHouseMap
       userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
       new (google.maps.Marker)(
         position: userLatLng
+        icon: "<%= asset_path('user_marker.png') %>"
         map: @map)
 
   _addCoffeeHouseMarker: =>
     new (google.maps.Marker)(
       position: @_coffeeHouseLatLng()
+      icon: "<%= asset_path('coffee_house_marker.png') %>"
       map: @map)
 
   _coffeeHouseLatLng: =>

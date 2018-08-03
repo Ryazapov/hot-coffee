@@ -8,6 +8,8 @@ class CreateCoffeeHouses < ActiveRecord::Migration[5.1]
       t.string :description
 
       t.belongs_to :owner, null: false, foreign_key: { to_table: :users }, index: true, on_delete: :cascade
+
+      t.timestamps
     end
 
     add_index :coffee_houses, %i[latitude longitude]
