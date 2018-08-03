@@ -19,10 +19,3 @@
 
       .form-actions
         = f.button :submit, "Update"
-
-  .medium-5.medium-offset-1.columns.end
-    p
-      = link_to "Delete #{coffee_house.name}",
-          manage_coffee_house_path(coffee_house),
-          data: { confirm: "Are you sure?" },
-          method: :delete
