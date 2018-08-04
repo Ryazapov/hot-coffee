@@ -7,7 +7,6 @@ gem "rails", "5.1.2"
 
 # assets
 gem "autoprefixer-rails"
-gem "coffee-rails"
 gem "foundation-icons-sass-rails"
 gem "foundation-rails"
 gem "mini_racer"
@@ -75,7 +74,6 @@ group :development, :test do
   gem "bullet"
   gem "bundler-audit", require: false
   gem "byebug"
-  gem "coffeelint"
   gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "faker"

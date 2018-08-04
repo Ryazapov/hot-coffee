@@ -1,0 +1,55 @@
+class CoffeeHouseMap {
+  constructor($el) {
+    this.$el = $el;
+
+    this.setupMap();
+  }
+
+  setupMap() {
+    this.coffeeHouse = JSON.parse(this.$el.context.dataset.coffeeHouse);
+    this.map = new google.maps.Map(this.$el.context, this.mapOptions());
+
+    this.addCoffeeHouseMarker();
+    this.addUserMarker();
+  }
+
+  mapOptions() {
+    return {
+      zoom: 15,
+      center: this.coffeeHouseLatLng()
+    };
+  }
+
+  addUserMarker() {
+    if (!navigator.geolocation) { return; }
+
+    return navigator.geolocation.getCurrentPosition(position => {
+      const userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      return new (google.maps.Marker)({
+        position: userLatLng,
+        icon: "<%= asset_path('user_marker.png') %>",
+        map: this.map
+      });
+    });
+  }
+
+  addCoffeeHouseMarker() {
+    return new (google.maps.Marker)({
+      position: this.coffeeHouseLatLng(),
+      icon: "<%= asset_path('coffee_house_marker.png') %>",
+      map: this.map
+    });
+  }
+
+  coffeeHouseLatLng() {
+    return new google.maps.LatLng(this.coffeeHouse.latitude, this.coffeeHouse.longitude);
+  }
+}
+
+$.fn.initCoffeeHouseMap = function() {
+  return $(this).each(function() {
+    if (!$.data(this, "coffee-house__map")) {
+      return $.data(this, "coffee-house__map", new CoffeeHouseMap($(this)));
+    }
+  });
+};
