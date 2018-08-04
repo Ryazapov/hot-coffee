@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180804155530) do
 
   create_table "coffees", force: :cascade do |t|
     t.string "name", null: false
-    t.string "type", null: false
+    t.string "kind", null: false
     t.integer "volume", null: false
     t.decimal "price", precision: 10, scale: 2, null: false
     t.string "description"

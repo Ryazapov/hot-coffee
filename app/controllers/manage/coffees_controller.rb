@@ -1,4 +1,5 @@
 class Manage::CoffeesController < Manage::BaseController
+  expose_decorated :coffee_house
   expose_decorated :coffees, :fetch_coffees
   expose_decorated :coffee, parent: :coffee_house
 
@@ -8,7 +9,7 @@ class Manage::CoffeesController < Manage::BaseController
   def create
     coffee.save
 
-    respond_with(:manage, coffee_house)
+    respond_with(:manage, coffee_house, coffee)
   end
 
   def show
@@ -18,21 +19,21 @@ class Manage::CoffeesController < Manage::BaseController
   end
 
   def update
-    coffee.update(coffee_house_params)
+    coffee.update(coffee_params)
 
-    respond_with(:manage, coffee_house)
+    respond_with(:manage, coffee_house, coffee)
   end
 
   def destroy
-    coffee_house.destroy
+    coffee.destroy
 
-    respond_with(:manage, coffee_house)
+    respond_with(coffee, location: manage_coffee_house_path(coffee_house))
   end
 
   private
 
   def coffee_params
-    params.require(:coffee_house).permit(:name, :type, :volume, :price, :description)
+    params.require(:coffee).permit(:name, :kind, :volume, :price, :description)
   end
 
   def fetch_coffees
@@ -40,6 +41,6 @@ class Manage::CoffeesController < Manage::BaseController
   end
 
   def authorize_resource!
-    authorize! coffee_house
+    authorize! coffee
   end
 end

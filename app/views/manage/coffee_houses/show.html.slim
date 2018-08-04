@@ -17,4 +17,14 @@ hr
   .medium-10.columns
     = link_to "Add Coffee", new_manage_coffee_house_coffee_path(coffee_house)
 
-    = render partial: "manage/coffees/coffee", collection: coffees
+    table
+      thead
+        tr
+          th Name
+          th Kind
+          th Volume
+          th Price
+          th
+          th
+      tbody
+        = render partial: "manage/coffees/coffee", collection: coffees

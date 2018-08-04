@@ -19,5 +19,6 @@ feature "Show Coffee House" do
     expect(page).to have_content("Coffee House")
     expect(page).to have_content("We give very HOT COFFEE")
     expect(page).to have_content("Where to find us: Profsoyuznaya Ulitsa, 50, Kazan, Russia")
+    expect(page).to have_link("Add Coffee")
   end
 end
