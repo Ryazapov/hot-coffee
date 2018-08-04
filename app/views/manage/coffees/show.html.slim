@@ -1,0 +1,12 @@
+.row
+  .columns
+    h2 = title(coffee.name)
+hr
+.row
+  .medium-10.columns
+    | Coffee House:
+    => link_to coffee.coffee_house_name, manage_coffee_house_coffee_path(coffee.coffee_house_id, coffee)
+    = "Type: #{coffee.type}"
+    = "Volume: #{coffee.volume}"
+    = "Price: #{coffee.price}"
+    = coffee_house.description

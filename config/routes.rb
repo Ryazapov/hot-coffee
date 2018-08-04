@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   namespace :manage do
-    resources :coffee_houses
+    resources :coffee_houses do
+      resources :coffees, only: %i[new create show edit update destroy]
+    end
   end
 end

@@ -11,3 +11,10 @@ hr
 .row
   .medium-10.columns
     .coffee-house__map data-coffee-house=coffee_house.to_json
+
+hr
+.row
+  .medium-10.columns
+    = link_to "Add Coffee", new_manage_coffee_house_coffee_path(coffee_house)
+
+    = render partial: "manage/coffees/coffee", collection: coffees

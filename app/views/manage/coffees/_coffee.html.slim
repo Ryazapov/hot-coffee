@@ -1,0 +1,8 @@
+tr
+  td = link_to coffee.name, manage_coffee_house_coffee_path(coffee.coffee_house_id, coffee)
+  td = coffee.type
+  td = coffee.volume
+  td = coffee.price
+  td = link_to "edit", edit_manage_coffee_house_coffee_path(coffee.coffee_house_id, coffee)
+  td = link_to "delete", manage_coffee_house_coffee_path(coffee.coffee_house_id, coffee),
+        class: "table-action--destroy", method: :delete
