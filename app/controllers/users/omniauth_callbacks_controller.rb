@@ -9,6 +9,15 @@ module Users
       end
     end
 
+    def google_oauth2
+      if authenticate_user.success?
+        sign_in_and_redirect authenticate_user.user, event: :authentication
+        set_flash_message(:notice, :success, kind: "Google")
+      else
+        redirect_to(new_user_registration_path, alert: authenticate_user.error)
+      end
+    end
+
     private
 
     def authenticate_user

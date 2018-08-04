@@ -55,4 +55,28 @@ feature "Sign In" do
       end
     end
   end
+
+  context "when visitor has google account", :js do
+    include_context :google_with_valid_credentials
+
+    scenario "Visitor signs in with google" do
+      visit new_user_session_path
+
+      click_link "Sign in with Google Oauth2"
+
+      expect(page).to have_content("Successfully authenticated from Google account.")
+    end
+
+    context "when credentials is invalid" do
+      include_context :google_with_invalid_credentials
+
+      scenario "Visitor cannot signs in with google" do
+        visit new_user_session_path
+
+        click_link "Sign in with Google Oauth2"
+
+        expect(page).to have_content("Could not authenticate you from GoogleOauth2 because \"Invalid credentials\".")
+      end
+    end
+  end
 end

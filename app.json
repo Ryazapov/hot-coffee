@@ -12,7 +12,9 @@
     "RAILS_SERVE_STATIC_FILES": { "required": true },
     "SECRET_KEY_BASE": { "generator": "secret" },
     "FACEBOOK_APP_ID": { "required": true },
-    "FACEBOOK_APP_SECRET": { "required": true}
+    "FACEBOOK_APP_SECRET": { "required": true},
+    "GOOGLE_APP_ID": { "required": true },
+    "GOOGLE_APP_SECRET": { "required": true}
   },
   "addons": [
     "heroku-postgresql",
