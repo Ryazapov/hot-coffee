@@ -236,6 +236,11 @@ Devise.setup do |config|
     info_fields: "email, name",
     locale: "en"
 
+  config.omniauth :google_oauth2,
+    ENV.fetch("GOOGLE_APP_ID"),
+    ENV.fetch("GOOGLE_APP_SECRET"),
+    locale: "en"
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

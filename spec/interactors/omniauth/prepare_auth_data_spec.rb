@@ -44,7 +44,7 @@ describe Omniauth::PrepareAuthData do
           )
         end
 
-        it "does not prepare facebook auth params" do
+        it "can not prepare auth params" do
           is_expected.to be_failure
 
           expect(interactor_call.error).to eq("Can not create a user with the provided data")
@@ -59,7 +59,69 @@ describe Omniauth::PrepareAuthData do
           )
         end
 
-        it "does not prepare facebook auth params" do
+        it "can not prepare auth params" do
+          is_expected.to be_failure
+
+          expect(interactor_call.error).to eq("Can not create a user with the provided data")
+        end
+      end
+    end
+
+    context "when auth with google" do
+      let(:auth_params) do
+        OmniAuth::AuthHash.new(
+          provider: "google_oauth2",
+          uid: "12345",
+          info: {
+            email: "john.smith@gmail.com",
+            name: "John Smith"
+          }
+        )
+      end
+
+      let(:expeted_auth_data) do
+        {
+          provider: "google_oauth2",
+          uid: "12345",
+          email: "john.smith@gmail.com",
+          name: "John Smith"
+        }
+      end
+
+      it "prepares facebook auth params" do
+        is_expected.to be_success
+
+        expect(auth_data).to eq(expeted_auth_data)
+      end
+
+      context "when auth params are invalid" do
+        let(:auth_params) do
+          OmniAuth::AuthHash.new(
+            provider: "google_oauth2",
+            uid: "12345",
+            info: {
+              email: "",
+              name: ""
+            }
+          )
+        end
+
+        it "can not prepare auth params" do
+          is_expected.to be_failure
+
+          expect(interactor_call.error).to eq("Can not create a user with the provided data")
+        end
+      end
+
+      context "when auth params without required data" do
+        let(:auth_params) do
+          OmniAuth::AuthHash.new(
+            provider: "google_oauth2",
+            uid: "12345"
+          )
+        end
+
+        it "can not prepare auth params" do
           is_expected.to be_failure
 
           expect(interactor_call.error).to eq("Can not create a user with the provided data")
