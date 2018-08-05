@@ -12,7 +12,7 @@ class CoffeeHousesController < ApplicationController
   private
 
   def fetch_coffee_houses
-    CoffeeHouse.near(request_location).page(page)
+    CoffeeHouse.near(current_location.coordinates).page(page)
   end
 
   def page
