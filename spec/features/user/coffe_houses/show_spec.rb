@@ -5,12 +5,10 @@ feature "Show Coffee House" do
 
   let(:coffee_house) do
     create :coffee_house,
+      :kazan_profsoyuznaya,
       owner: current_user,
       name: "Coffee House",
-      description: "We give very HOT COFFEE",
-      latitude: 55.78778545536969,
-      longitude: 49.122609570622444,
-      address: "Profsoyuznaya Ulitsa, 50, Kazan, Russia"
+      description: "We give very HOT COFFEE"
   end
 
   scenario "User sees coffee house" do

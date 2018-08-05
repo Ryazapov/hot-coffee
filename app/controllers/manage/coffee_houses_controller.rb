@@ -43,8 +43,6 @@ class Manage::CoffeeHousesController < Manage::BaseController
   end
 
   def authorize_resource!
-    return authorize! CoffeeHouse if action_name == "index"
-
     authorize! coffee_house
   end
 end

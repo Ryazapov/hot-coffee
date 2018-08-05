@@ -88,7 +88,7 @@ describe Omniauth::PrepareAuthData do
         }
       end
 
-      it "prepares facebook auth params" do
+      it "prepares google auth params" do
         is_expected.to be_success
 
         expect(auth_data).to eq(expeted_auth_data)
