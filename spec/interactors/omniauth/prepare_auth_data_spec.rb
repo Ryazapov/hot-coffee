@@ -31,6 +31,40 @@ describe Omniauth::PrepareAuthData do
 
         expect(auth_data).to eq(expeted_auth_data)
       end
+
+      context "when auth params are invalid" do
+        let(:auth_params) do
+          OmniAuth::AuthHash.new(
+            provider: "facebook",
+            uid: "12345",
+            info: {
+              email: "",
+              name: ""
+            }
+          )
+        end
+
+        it "can not prepare auth params" do
+          is_expected.to be_failure
+
+          expect(interactor_call.error).to eq("Can not create a user with the provided data")
+        end
+      end
+
+      context "when auth params without required data" do
+        let(:auth_params) do
+          OmniAuth::AuthHash.new(
+            provider: "facebook",
+            uid: "12345"
+          )
+        end
+
+        it "can not prepare auth params" do
+          is_expected.to be_failure
+
+          expect(interactor_call.error).to eq("Can not create a user with the provided data")
+        end
+      end
     end
 
     context "when auth with google" do
@@ -59,39 +93,39 @@ describe Omniauth::PrepareAuthData do
 
         expect(auth_data).to eq(expeted_auth_data)
       end
-    end
 
-    context "when auth params are invalid" do
-      let(:auth_params) do
-        OmniAuth::AuthHash.new(
-          provider: "facebook",
-          uid: "12345",
-          info: {
-            email: "",
-            name: ""
-          }
-        )
+      context "when auth params are invalid" do
+        let(:auth_params) do
+          OmniAuth::AuthHash.new(
+            provider: "google_oauth2",
+            uid: "12345",
+            info: {
+              email: "",
+              name: ""
+            }
+          )
+        end
+
+        it "can not prepare auth params" do
+          is_expected.to be_failure
+
+          expect(interactor_call.error).to eq("Can not create a user with the provided data")
+        end
       end
 
-      it "can not prepare auth params" do
-        is_expected.to be_failure
+      context "when auth params without required data" do
+        let(:auth_params) do
+          OmniAuth::AuthHash.new(
+            provider: "google_oauth2",
+            uid: "12345"
+          )
+        end
 
-        expect(interactor_call.error).to eq("Can not create a user with the provided data")
-      end
-    end
+        it "can not prepare auth params" do
+          is_expected.to be_failure
 
-    context "when auth params without required data" do
-      let(:auth_params) do
-        OmniAuth::AuthHash.new(
-          provider: "facebook",
-          uid: "12345"
-        )
-      end
-
-      it "can not prepare auth params" do
-        is_expected.to be_failure
-
-        expect(interactor_call.error).to eq("Can not create a user with the provided data")
+          expect(interactor_call.error).to eq("Can not create a user with the provided data")
+        end
       end
     end
   end

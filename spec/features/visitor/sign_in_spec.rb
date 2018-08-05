@@ -56,7 +56,7 @@ feature "Sign In" do
     end
   end
 
-  context "when visitor has google account", :js do
+  context "when visitor has google account" do
     include_context :google_with_valid_credentials
 
     scenario "Visitor signs in with google" do
@@ -67,7 +67,7 @@ feature "Sign In" do
       expect(page).to have_content("Successfully authenticated from Google account.")
     end
 
-    context "when credentials is invalid" do
+    context "when credentials are invalid" do
       include_context :google_with_invalid_credentials
 
       scenario "Visitor cannot signs in with google" do
