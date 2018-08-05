@@ -1,0 +1,31 @@
+.row
+  .columns
+    h2 = title("Coffees")
+
+.row
+  = simple_form_for(:query, method: :get) do |f|
+    .form-inputs
+      .row
+        .medium-2.columns
+          = f.input :kind, collection: Coffee.translated_kinds, selected: params.dig(:query, :kind), include_blank: true
+        .medium-2.columns
+          = f.input :volume_from, input_html: { value: params.dig(:query, :volume_from) }
+        .medium-2.columns
+          = f.input :volume_to, input_html: { value: params.dig(:query, :volume_to) }
+        .medium-2.columns
+          = f.input :price_from, input_html: { value: params.dig(:query, :price_from) }
+        .medium-2.columns
+          = f.input :price_to, input_html: { value: params.dig(:query, :price_to) }
+        .medium-2.columns
+          = f.button :submit, "Search"
+
+  table
+    thead
+      tr
+        th Name
+        th Kind
+        th Volume
+        th Price
+    tbody
+      = render coffees
+    = paginate coffees

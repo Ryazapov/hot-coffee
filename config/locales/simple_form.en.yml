@@ -15,6 +15,9 @@ en:
         price: Price
         description: Description
 
+      query:
+        keywords: Search
+
     hints:
       user:
         edit:

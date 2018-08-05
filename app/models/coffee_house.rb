@@ -16,7 +16,7 @@ class CoffeeHouse < ApplicationRecord
     associated_against: {
       coffees: %i[name description]
     },
-    using: %i[tsearch]
+    using: { tsearch: { prefix: true } }
 
   def geoposition_changed?
     new_record? || address_changed? || latitude_changed? || longitude_changed?

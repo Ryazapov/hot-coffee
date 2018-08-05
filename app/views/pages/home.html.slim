@@ -7,16 +7,19 @@
       .form-inputs
         .row
           .medium-9.columns
-            = f.input :keywords
+            = f.input :keywords, input_html: { value: params.dig(:query, :keywords) }
           .medium-3.columns
             = f.button :submit, "Search"
 
-    - if result.exists?
+    - if searched_coffee_houses.exists?
       table
         thead
           tr
             th Name
             th Address
-        = render partial: "coffee_houses/coffee_house", collection: result
+        = render partial: "coffee_houses/coffee_house", collection: searched_coffee_houses
 
-    .common-map data-coffee-houses=coffee_houses.to_json
+      .common-map data-coffee-houses=searched_coffee_houses.to_json
+
+    - else
+      .common-map data-coffee-houses=coffee_houses.to_json
