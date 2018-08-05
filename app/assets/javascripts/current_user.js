@@ -1,6 +1,5 @@
 class User {
-  constructor(data) {
-    if (data == null) { data = {}; }
+  constructor(data = {}) {
     this.data = data;
   }
 
@@ -9,7 +8,7 @@ class User {
   }
 
   isSignedIn() {
-    return (this.get("id") != null);
+    return (this.get("id") !== null);
   }
 }
 

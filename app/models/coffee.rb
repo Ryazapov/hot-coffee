@@ -13,7 +13,7 @@ class Coffee < ApplicationRecord
   validates :volume, numericality: { only_integer: true, greater_than: 0 }
   validates :price, numericality: { greater_than: 0 }
 
-  def self.humanized_kinds
-    kinds.keys.map { |key| [I18n.t("activerecord.attributes.coffee.kinds.#{key}"), key] }
+  def self.translated_kinds
+    I18n.t("activerecord.attributes.coffee.kinds").invert.to_a
   end
 end
