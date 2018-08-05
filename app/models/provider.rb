@@ -1,6 +1,7 @@
 class Provider < ApplicationRecord
   NAMES = %w[
     facebook
+    google_oauth2
   ].freeze
 
   belongs_to :user
