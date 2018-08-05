@@ -1,24 +1,34 @@
+const KAZAN_LATITUDE = 55.788258;
+const KAZAN_LONGITUDE = 49.119290;
+
+const LATITUDE_INPUT_SELECTOR = "#coffee_house_latitude";
+const LONGITUDE_INPUT_SELECTOR = "#coffee_house_longitude";
+const LOCATION_INPUT_SELECTOR = "location-input";
+
 class LocationInput {
-  static initClass() {
-    KAZAN_LATITUDE = 55.788258;
-    KAZAN_LONGITUDE = 49.119290;
-
-    LATITUDE_INPUT_SELECTOR = "#coffee_house_latitude";
-    LONGITUDE_INPUT_SELECTOR = "#coffee_house_longitude";
-  }
-
-  constructor($el) {
-    this.$el = $el;
-    this.latitudeinput = $(LATITUDE_INPUT_SELECTOR);
-    this.longitudeinput = $(LONGITUDE_INPUT_SELECTOR);
-
+  constructor($locationInput) {
+    this.locationInput = $locationInput;
+    this.latitudeInput = $(LATITUDE_INPUT_SELECTOR);
+    this.longitudeInput = $(LONGITUDE_INPUT_SELECTOR);
     this.setupMap();
-    this.isNewForm();
   }
 
   setupMap() {
-    this.map = new google.maps.Map(this.$el.context, this.mapOptions());
-    this.map.addListener("click", this.addMarker);
+    this.map = new google.maps.Map(this.locationInput, this.mapOptions());
+    this.map.addListener("click", event => {
+      this.latitudeInput.val(event.latLng.lat);
+      this.longitudeInput.val(event.latLng.lng);
+
+      if (this.marker) {
+        this.marker.setPosition(event.latLng);
+      } else {
+        this.marker = new (google.maps.Marker)({
+          position: event.latLng,
+          map: this.map
+        });
+      }
+    });
+
     this.addCurrentMarker();
     this.changeCenterCoords();
   }
@@ -30,25 +40,11 @@ class LocationInput {
     };
   }
 
-  addMarker(event) {
-    this.latitudeinput.val(event.latLng.lat);
-    this.longitudeinput.val(event.latLng.lng);
-
-    if (this.marker) {
-      this.marker.setPosition(event.latLng);
-    } else {
-      this.marker = new (google.maps.Marker)({
-        position: event.latLng,
-        map: this.map
-      });
-    }
-  }
-
   addCurrentMarker() {
     if (this.isNewForm()) { return; }
 
     return this.marker = new (google.maps.Marker)({
-      position: new google.maps.LatLng(this.latitudeinput.val(), this.longitudeinput.val()),
+      position: new google.maps.LatLng(this.latitudeInput.val(), this.longitudeInput.val()),
       map: this.map
     });
   }
@@ -63,20 +59,18 @@ class LocationInput {
   }
 
   centerLatLng() {
-    if (this.isNewForm()) { return new google.maps.LatLng(KAZANLATITUDE, KAZANLONGITUDE); }
+    if (this.isNewForm()) { return new google.maps.LatLng(KAZAN_LATITUDE, KAZAN_LONGITUDE); }
 
-    return new google.maps.LatLng(this.latitudeinput.val(), this.longitudeinput.val());
+    return new google.maps.LatLng(this.latitudeInput.val(), this.longitudeInput.val());
   }
 
   isNewForm() {
-    return (this.latitudeinput.val().length === 0) && (this.longitudeinput.val().length === 0);
+    return (this.latitudeInput.val().length === 0) && (this.longitudeInput.val().length === 0);
   }
 }
 
-$.fn.initLocationInput = function() {
-  return $(this).each(function() {
-    if (!$.data(this, "location-input")) {
-      return $.data(this, "location-input", new LocationInput($(this)));
-    }
-  });
-};
+const $locationInputs = document.getElementsByClassName(LOCATION_INPUT_SELECTOR);
+
+[...$locationInputs].forEach(($locationInput) => {
+  new LocationInput($locationInput);
+});

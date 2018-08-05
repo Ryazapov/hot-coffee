@@ -15,5 +15,4 @@
 //= require_tree .
 
 $(document).foundation();
-$(".location-input").initLocationInput();
 $(".coffee-house__map").initCoffeeHouseMap();

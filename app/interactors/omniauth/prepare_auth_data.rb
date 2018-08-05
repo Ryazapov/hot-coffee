@@ -34,4 +34,13 @@ class Omniauth::PrepareAuthData
       name: auth_params.dig(:info, :name)
     }
   end
+
+  def google_oauth2_auth_data
+    {
+      provider: provider,
+      uid: uid,
+      email: auth_params.dig(:info, :email),
+      name: auth_params.dig(:info, :name)
+    }
+  end
 end

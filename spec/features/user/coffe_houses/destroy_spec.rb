@@ -5,18 +5,14 @@ feature "Destroy Coffee House" do
 
   background do
     create :coffee_house,
+      :kazan_butlerova,
       owner: current_user,
-      name: "Sweety Coffee",
-      latitude: 55.78787607694294,
-      longitude: 49.12356007675169,
-      address: "Ulitsa Butlerova, 4, Kazan, Russia"
+      name: "Sweety Coffee"
 
     create :coffee_house,
+      :kazan_profsoyuznaya,
       owner: current_user,
-      name: "Coffee House",
-      latitude: 55.78778545536969,
-      longitude: 49.122609570622444,
-      address: "Profsoyuznaya Ulitsa, 50, Kazan, Russia"
+      name: "Coffee House"
   end
 
   scenario "User destroys coffee house" do
