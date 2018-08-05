@@ -1,0 +1,66 @@
+class CommonMap {
+  static initClass() {
+    KAZAN_LATITUDE = 55.788258;
+    KAZAN_LONGITUDE = 49.119290;
+  }
+
+  constructor($el) {
+    this.$el = $el;
+
+    this.setupMap();
+  }
+
+  setupMap() {
+    this.coffeeHouses = JSON.parse(this.$el.context.dataset.coffeeHouses);
+    this.map = new google.maps.Map(this.$el.context, this.mapOptions());
+
+    this.addCoffeeHousesMarkers();
+    this.addUserMarker();
+  }
+
+  mapOptions() {
+    return {
+      zoom: 15,
+      center: new google.maps.LatLng(55.788258, 49.119290)
+    };
+  }
+
+  addCoffeeHousesMarkers() {
+    [...this.coffeeHouses].forEach((coffeeHouse) => {
+      const marker = new (google.maps.Marker)({
+        position: new google.maps.LatLng(coffeeHouse.latitude, coffeeHouse.longitude),
+        icon: "<%= asset_path('coffee_house_marker.png') %>",
+        map: this.map
+      });
+
+      marker.addListener("click", () => {
+        const infowindow = new google.maps.InfoWindow({
+          content: `<h6>${coffeeHouse.name}</h6><p>${coffeeHouse.description}</p>`
+        });
+        infowindow.open(this.map, marker);
+      });
+    });
+  }
+
+  addUserMarker() {
+    if (!navigator.geolocation) { return; }
+
+    return navigator.geolocation.getCurrentPosition(position => {
+      const userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      this.map.setCenter(userLatLng);
+      return new (google.maps.Marker)({
+        position: userLatLng,
+        icon: "<%= asset_path('user_marker.png') %>",
+        map: this.map
+      });
+    });
+  }
+}
+
+$.fn.initCommonMap = function() {
+  return $(this).each(function() {
+    if (!$.data(this, "common-map")) {
+      return $.data(this, "common-map", new CommonMap($(this)));
+    }
+  });
+};

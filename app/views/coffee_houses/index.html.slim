@@ -1,0 +1,13 @@
+.row
+  .columns
+    h2 = title("Coffee Houses")
+
+.row
+  table
+    thead
+      tr
+        th Name
+        th Address
+    tbody
+      = render coffee_houses
+    = paginate coffee_houses

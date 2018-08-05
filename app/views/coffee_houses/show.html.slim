@@ -1,0 +1,26 @@
+.row
+  .columns
+    h2 = title(coffee_house.name)
+hr
+.row
+  .medium-10.columns
+    = coffee_house.description
+    = "Where to find us: #{coffee_house.address}"
+
+hr
+.row
+  .medium-10.columns
+    .coffee-house__map data-coffee-house=coffee_house.to_json
+
+hr
+.row
+  .medium-10.columns
+    table
+      thead
+        tr
+          th Name
+          th Kind
+          th Volume
+          th Price
+      tbody
+        = render partial: "coffees/coffee", collection: coffees
