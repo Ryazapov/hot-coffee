@@ -29,20 +29,14 @@ feature "Index Coffee" do
     within "tbody" do
       expect(page).to have_selector("tr", count: 2)
 
-      expect_page_to_have_row(
+      expect(page).to have_table_row(
         number: 1,
         values: ["Cappuccino", "Hot Coffee", "300 mL", "$4.00", "edit", "delete"]
       )
-      expect_page_to_have_row(
+      expect(page).to have_table_row(
         number: 2,
         values: ["Latte", "Hot Coffee", "500 mL", "$4.00", "edit", "delete"]
       )
-    end
-  end
-
-  def expect_page_to_have_row(number:, values:)
-    within "tr:nth-child(#{number})" do
-      expect(page.all("td").map(&:text)).to eq(values)
     end
   end
 end
