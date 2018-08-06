@@ -3,6 +3,8 @@ module Authorization
   prepend ActionPolicyDraper
 
   included do
+    before_action :authorize_resource!, unless: :devise_controller?
+
     verify_authorized unless: :devise_controller?
   end
 
