@@ -1,6 +1,8 @@
 class CoffeeHouse < ApplicationRecord
   belongs_to :owner, class_name: "User"
 
+  has_many :coffees, dependent: :destroy
+
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
   before_validation :reverse_geocode, if: :geoposition_changed?

@@ -1,6 +1,7 @@
 class Manage::CoffeeHousesController < Manage::BaseController
   expose_decorated :coffee_houses, :fetch_coffee_houses
   expose_decorated :coffee_house, parent: :current_user
+  expose_decorated :coffees, from: :coffee_house
 
   def index
   end

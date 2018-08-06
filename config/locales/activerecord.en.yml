@@ -1,9 +1,23 @@
 en:
-  active_record:
+  activerecord:
     models:
       user:
         one: User
+      coffee:
+        one: Coffee
 
     attributes:
       user:
         full_name: Full name
+
+      coffee:
+        name: Name
+        kind: Type
+        kinds:
+          hot_coffee: Hot Coffee
+          cold_coffee: Cold Coffee
+          coffee_drink: Coffee Drink
+          copyright_coffee: Copyright Coffee
+        volume: Volume
+        price: Price
+        description: Description

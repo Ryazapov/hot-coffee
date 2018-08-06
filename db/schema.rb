@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180723185905) do
+ActiveRecord::Schema.define(version: 20180804155530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 20180723185905) do
     t.datetime "updated_at", null: false
     t.index ["latitude", "longitude"], name: "index_coffee_houses_on_latitude_and_longitude"
     t.index ["owner_id"], name: "index_coffee_houses_on_owner_id"
+  end
+
+  create_table "coffees", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "kind", null: false
+    t.integer "volume", null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.string "description"
+    t.bigint "coffee_house_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coffee_house_id"], name: "index_coffees_on_coffee_house_id"
   end
 
   create_table "providers", force: :cascade do |t|
@@ -59,5 +71,6 @@ ActiveRecord::Schema.define(version: 20180723185905) do
   end
 
   add_foreign_key "coffee_houses", "users", column: "owner_id"
+  add_foreign_key "coffees", "coffee_houses"
   add_foreign_key "providers", "users"
 end

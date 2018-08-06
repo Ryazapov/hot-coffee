@@ -8,6 +8,13 @@ en:
           password: Enter new password
           password_confirmation: Confirm your new password
 
+      coffee:
+        name: Name
+        kind: Type
+        volume: Volume
+        price: Price
+        description: Description
+
     hints:
       user:
         edit:
