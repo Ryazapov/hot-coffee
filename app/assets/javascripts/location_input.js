@@ -3,7 +3,6 @@ const KAZAN_LONGITUDE = 49.119290;
 
 const LATITUDE_INPUT_SELECTOR = "#coffee_house_latitude";
 const LONGITUDE_INPUT_SELECTOR = "#coffee_house_longitude";
-const LOCATION_INPUT_SELECTOR = "location-input";
 
 class LocationInput {
   constructor($locationInput) {
@@ -69,6 +68,7 @@ class LocationInput {
   }
 }
 
+const LOCATION_INPUT_SELECTOR = "location-input";
 const $locationInputs = document.getElementsByClassName(LOCATION_INPUT_SELECTOR);
 
 [...$locationInputs].forEach(($locationInput) => {
