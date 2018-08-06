@@ -23,26 +23,20 @@ feature "Index Coffee" do
       description: "Classic latte"
   end
 
-  scenario "User sees list of coffee houses" do
+  scenario "User sees list of coffee" do
     visit manage_coffee_house_path(coffee_house)
 
     within "tbody" do
       expect(page).to have_selector("tr", count: 2)
 
-      expect_page_to_have_row(
+      expect(page).to have_table_row(
         number: 1,
         values: ["Cappuccino", "Hot Coffee", "300 mL", "$4.00", "edit", "delete"]
       )
-      expect_page_to_have_row(
+      expect(page).to have_table_row(
         number: 2,
         values: ["Latte", "Hot Coffee", "500 mL", "$4.00", "edit", "delete"]
       )
-    end
-  end
-
-  def expect_page_to_have_row(number:, values:)
-    within "tr:nth-child(#{number})" do
-      expect(page.all("td").map(&:text)).to eq(values)
     end
   end
 end

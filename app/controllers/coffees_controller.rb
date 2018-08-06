@@ -11,7 +11,11 @@ class CoffeesController < ApplicationController
   private
 
   def fetch_coffees
-    FilterCoffeesQuery.new(params[:query]).all.page(page)
+    FilterCoffeesQuery.new(filter_params).all.page(page)
+  end
+
+  def filter_params
+    params.permit(query: %i[kind volume_from volume_to price_from price_to]).dig(:query)&.to_h
   end
 
   def page

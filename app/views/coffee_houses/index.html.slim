@@ -3,6 +3,13 @@
     h2 = title("Coffee Houses")
 
 .row
+  = simple_form_for(:query, wrapper: :group_form, method: :get) do |f|
+    .form-inputs
+      .row
+        .medium-9.columns
+          = f.input :keywords, input_html: { value: params.dig(:query, :keywords) }
+        .medium-3.columns
+          = f.button :submit, "Search"
   table
     thead
       tr

@@ -3,12 +3,4 @@
 
 .row
   .medium-12.columns
-    = simple_form_for(:query, wrapper: :group_form, method: :get) do |f|
-      .form-inputs
-        .row
-          .medium-9.columns
-            = f.input :keywords, input_html: { value: params.dig(:query, :keywords) }
-          .medium-3.columns
-            = f.button :submit, "Search"
-
     .common-map data-coffee-houses=coffee_houses.to_json

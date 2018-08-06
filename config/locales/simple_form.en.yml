@@ -16,6 +16,7 @@ en:
         description: Description
 
       query:
+        kind: Type
         keywords: Search
 
     hints:
