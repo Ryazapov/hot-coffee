@@ -1,5 +1,5 @@
 class CoffeesController < ApplicationController
-  expose_decorated :coffees, :fetch_coffees
+  expose_decorated :coffees, :filtered_coffees
   expose_decorated :coffee
 
   def index
@@ -10,8 +10,12 @@ class CoffeesController < ApplicationController
 
   private
 
+  def filtered_coffees
+    FilterCoffeesQuery.new(fetch_coffees, filter_params).all.page(page)
+  end
+
   def fetch_coffees
-    FilterCoffeesQuery.new(filter_params).all.page(page)
+    Coffee.order(created_at: :desc)
   end
 
   def filter_params

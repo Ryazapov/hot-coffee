@@ -4,8 +4,8 @@ class FilterCoffeesQuery
   attr_reader :relation, :filter_params
   private :relation, :filter_params
 
-  def initialize(filter_params = {})
-    @relation = Coffee.order(created_at: :desc)
+  def initialize(relation, filter_params = {})
+    @relation = relation
     @filter_params = filter_params
   end
 

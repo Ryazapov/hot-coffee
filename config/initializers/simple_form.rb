@@ -13,11 +13,10 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-  config.wrappers :default,
-    class: :input,
-    hint_class: :field_with_hint,
-    error_class: :field_with_errors,
-    valid_class: :field_without_errors do |b|
+  config.wrappers :default, class: :input,
+                            hint_class: :field_with_hint,
+                            error_class: :field_with_errors,
+                            valid_class: :field_without_errors do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.
@@ -90,9 +89,6 @@ SimpleForm.setup do |config|
   # CSS class to add for error notification helper.
   config.error_notification_class = "error_notification"
 
-  # ID to add for error notification helper.
-  # config.error_notification_id = nil
-
   # Series of attempts to detect a default label method for collection.
   # config.collection_label_methods = [ :to_label, :name, :title, :to_s ]
 
@@ -136,7 +132,7 @@ SimpleForm.setup do |config|
   config.browser_validations = false
 
   # Collection of methods to detect if a file type was given.
-  # config.file_methods = [ :mounted_as, :file?, :public_filename :attached? ]
+  # config.file_methods = [ :mounted_as, :file?, :public_filename, :attached? ]
 
   # Custom mappings for input types. This should be a hash containing a regexp
   # to match as key, and the input type that will be used when the field name

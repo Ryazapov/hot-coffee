@@ -12,7 +12,7 @@ class CoffeeHousesController < ApplicationController
   private
 
   def fetch_coffee_houses
-    NearestOrSearchedCoffeeHousesQuery.new(current_location, keywords).all.page(page)
+    CoffeeHousesQuery.new(current_location, keywords).all.page(page)
   end
 
   def fetch_coffees

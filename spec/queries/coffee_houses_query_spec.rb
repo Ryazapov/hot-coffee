@@ -1,7 +1,7 @@
 require "rails_helper"
 require "geocoder/results/ipinfo_io"
 
-describe NearestOrSearchedCoffeeHousesQuery do
+describe CoffeeHousesQuery do
   subject(:query) { described_class.new(location, keywords) }
 
   let(:location) { instance_double(Geocoder::Result::IpinfoIo, coordinates: coordinates) }

@@ -11,7 +11,7 @@ class CoffeeHouse < ApplicationRecord
 
   validates :name, :latitude, :longitude, :address, presence: true
 
-  pg_search_scope :search_by_name_or_description,
+  pg_search_scope :search_by_text_fields,
     against: %i[name description],
     associated_against: {
       coffees: %i[name description]

@@ -1,4 +1,4 @@
-class NearestOrSearchedCoffeeHousesQuery
+class CoffeeHousesQuery
   attr_reader :location, :keywords
   delegate :coordinates, to: :location
 
@@ -18,6 +18,6 @@ class NearestOrSearchedCoffeeHousesQuery
   end
 
   def search_coffee_houses
-    CoffeeHouse.search_by_name_or_description(keywords)
+    CoffeeHouse.search_by_text_fields(keywords)
   end
 end

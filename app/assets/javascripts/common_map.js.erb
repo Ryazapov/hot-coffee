@@ -1,18 +1,13 @@
 class CommonMap {
-  static initClass() {
-    KAZAN_LATITUDE = 55.788258;
-    KAZAN_LONGITUDE = 49.119290;
-  }
-
-  constructor($el) {
-    this.$el = $el;
+  constructor($commonMap) {
+    this.commonMap = $commonMap;
 
     this.setupMap();
   }
 
   setupMap() {
-    this.coffeeHouses = JSON.parse(this.$el.context.dataset.coffeeHouses);
-    this.map = new google.maps.Map(this.$el.context, this.mapOptions());
+    this.coffeeHouses = JSON.parse(this.commonMap.dataset.coffeeHouses);
+    this.map = new google.maps.Map(this.commonMap, this.mapOptions());
 
     this.addCoffeeHousesMarkers();
     this.addUserMarker();
@@ -21,7 +16,7 @@ class CommonMap {
   mapOptions() {
     return {
       zoom: 15,
-      center: new google.maps.LatLng(55.788258, 49.119290)
+      center: new google.maps.LatLng(KAZAN_LATITUDE, KAZAN_LONGITUDE)
     };
   }
 
@@ -34,12 +29,20 @@ class CommonMap {
       });
 
       marker.addListener("click", () => {
-        const infowindow = new google.maps.InfoWindow({
-          content: `<h6>${coffeeHouse.name}</h6><p>${coffeeHouse.description}</p>`
+        const infoWindow = new google.maps.InfoWindow({
+          content: windowContent(coffeeHouse)
         });
-        infowindow.open(this.map, marker);
+        infoWindow.open(this.map, marker);
       });
     });
+  }
+
+  windowContent(coffeeHouse) {
+    if (coffeeHouse.description.length > 0) {
+      return`<h6>${coffeeHouse.name}</h6><p>${coffeeHouse.description}</p>`
+    } else {
+      return`<h6>${coffeeHouse.name}</h6>`
+    }
   }
 
   addUserMarker() {
@@ -57,10 +60,9 @@ class CommonMap {
   }
 }
 
-$.fn.initCommonMap = function() {
-  return $(this).each(function() {
-    if (!$.data(this, "common-map")) {
-      return $.data(this, "common-map", new CommonMap($(this)));
-    }
-  });
-};
+const COMMON_MAP_SELECTOR = "common-map";
+const $commonMaps = document.getElementsByClassName(COMMON_MAP_SELECTOR);
+
+[...$commonMaps].forEach(($commonMap) => {
+  new CommonMap($commonMap);
+});

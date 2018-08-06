@@ -1,13 +1,14 @@
 require "rails_helper"
 
 describe FilterCoffeesQuery do
-  subject(:query) { described_class.new(filter_params) }
+  subject(:query) { described_class.new(relation, filter_params) }
 
   let!(:cappuccino) { create :coffee, kind: "hot_coffee", volume: 300, price: 4 }
   let!(:frappuccino) { create :coffee, kind: "cold_coffee", volume: 400, price: 5 }
   let!(:latte) { create :coffee, kind: "hot_coffee", volume: 500, price: 4 }
   let!(:mocco) { create :coffee, kind: "hot_coffee", volume: 500, price: 6 }
 
+  let(:relation) { Coffee.order(created_at: :desc) }
   let(:filter_params) { nil }
 
   describe "#all" do

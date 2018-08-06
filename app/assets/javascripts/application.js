@@ -7,6 +7,7 @@
 //= require jquery2
 //= require jquery-ujs
 //= require foundation
+//= require constans
 //= require current_user
 //= require ckeditor/init
 //= require location_input
@@ -17,4 +18,3 @@
 
 $(document).foundation();
 $(".coffee-house__map").initCoffeeHouseMap();
-$(".common-map").initCommonMap();

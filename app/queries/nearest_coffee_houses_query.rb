@@ -1,16 +1,17 @@
 class NearestCoffeeHousesQuery
   DISTANCE = 10 # km
 
-  attr_reader :location
+  attr_reader :relation, :location
   delegate :coordinates, to: :location
 
-  private :location, :coordinates
+  private :relation, :location, :coordinates
 
-  def initialize(location)
+  def initialize(relation, location)
+    @relation = relation
     @location = location
   end
 
   def all
-    CoffeeHouse.near(coordinates, DISTANCE, units: :km)
+    relation.near(coordinates, DISTANCE, units: :km)
   end
 end
