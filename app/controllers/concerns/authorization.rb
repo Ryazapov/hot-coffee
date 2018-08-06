@@ -1,14 +1,14 @@
 module Authorization
   extend ActiveSupport::Concern
+  prepend ActionPolicyDraper
 
   included do
-    include Pundit
-    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+    before_action :authorize_resource!, unless: :devise_controller?
+
+    verify_authorized unless: :devise_controller?
   end
 
-  private
-
-  def user_not_authorized
-    redirect_to(root_path)
+  def authorize_resource!
+    raise NotImplementedError
   end
 end

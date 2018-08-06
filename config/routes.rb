@@ -4,5 +4,9 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  root to: "pages#home"
+  root to: "pages#index"
+
+  namespace :manage do
+    resources :coffee_houses
+  end
 end

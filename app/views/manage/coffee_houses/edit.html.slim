@@ -1,0 +1,21 @@
+.row
+  .columns
+    h2 = title("Edit #{coffee_house.name}")
+
+.row
+  = simple_form_for([:manage, coffee_house]) do |f|
+    .medium-5.columns
+      .form-inputs
+        = f.input :name, required: true, autofocus: true
+        = f.input :latitude, as: :hidden
+        = f.input :longitude, as: :hidden
+
+    .medium-12.columns
+      = f.label :address
+      .location-input
+
+      .form-inputs
+        = f.input :description, as: :ckeditor
+
+      .form-actions
+        = f.button :submit, "Update"

@@ -4,5 +4,7 @@ class User < ApplicationRecord
 
   has_many :providers, dependent: :destroy
 
+  has_many :coffee_houses, foreign_key: :owner_id, dependent: :destroy
+
   validates :full_name, presence: true
 end

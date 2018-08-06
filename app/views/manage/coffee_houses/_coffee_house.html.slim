@@ -1,0 +1,5 @@
+tr
+  td = link_to coffee_house.name, manage_coffee_house_path(coffee_house)
+  td = coffee_house.address
+  td = link_to "edit", edit_manage_coffee_house_path(coffee_house)
+  td = link_to "delete", manage_coffee_house_path(coffee_house), class: "table-action--destroy", method: :delete
