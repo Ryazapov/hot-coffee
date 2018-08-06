@@ -7,7 +7,7 @@
 //= require jquery2
 //= require jquery-ujs
 //= require foundation
-//= require constans
+//= require constants
 //= require current_user
 //= require ckeditor/init
 //= require location_input
