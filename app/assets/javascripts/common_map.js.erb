@@ -30,7 +30,7 @@ class CommonMap {
 
       marker.addListener("click", () => {
         const infoWindow = new google.maps.InfoWindow({
-          content: windowContent(coffeeHouse)
+          content: this.windowContent(coffeeHouse)
         });
         infoWindow.open(this.map, marker);
       });
@@ -38,11 +38,13 @@ class CommonMap {
   }
 
   windowContent(coffeeHouse) {
-    if (coffeeHouse.description.length > 0) {
-      return`<h6>${coffeeHouse.name}</h6><p>${coffeeHouse.description}</p>`
-    } else {
-      return`<h6>${coffeeHouse.name}</h6>`
-    }
+    const content = `<a href="${this.coffeeHouseLink(coffeeHouse)}">${coffeeHouse.name}</a>`
+
+    return coffeeHouse.description.length > 0 ? `${content}<p>${coffeeHouse.description}</p>` : content
+  }
+
+  coffeeHouseLink(coffeeHouse) {
+    return `/coffee_houses/${coffeeHouse.id}`
   }
 
   addUserMarker() {
