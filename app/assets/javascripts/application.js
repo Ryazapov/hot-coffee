@@ -7,10 +7,12 @@
 //= require jquery2
 //= require jquery-ujs
 //= require foundation
+//= require constants
 //= require current_user
 //= require ckeditor/init
 //= require location_input
 //= require coffee_house_map
+//= require common_map
 //= require_tree ../templates
 //= require_tree .
 

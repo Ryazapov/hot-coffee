@@ -7,7 +7,7 @@
     = simple_form_for([:manage, coffee.coffee_house, coffee]) do |f|
       .form-inputs
         = f.input :name, required: true, autofocus: true
-        = f.input :kind, collection: Coffee.translated_kinds, required: true, include_blank: false
+        = f.input :kind, collection: Coffee.translated_kinds, include_blank: false
         = f.input :volume, required: true
         = f.input :price, required: true
         = f.input :description, as: :ckeditor

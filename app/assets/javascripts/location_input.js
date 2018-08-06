@@ -1,6 +1,3 @@
-const KAZAN_LATITUDE = 55.788258;
-const KAZAN_LONGITUDE = 49.119290;
-
 const LATITUDE_INPUT_SELECTOR = "#coffee_house_latitude";
 const LONGITUDE_INPUT_SELECTOR = "#coffee_house_longitude";
 

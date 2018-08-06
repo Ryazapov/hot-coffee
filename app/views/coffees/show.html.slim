@@ -1,0 +1,17 @@
+.row
+  .columns
+    h2 = title(coffee.name)
+hr
+.row
+  .medium-10.columns
+    p
+      | Coffee House:
+      =< link_to coffee.coffee_house_name, coffee_house_path(coffee.coffee_house_id)
+    p
+      = "Type: #{coffee.humanized_kind}"
+    p
+      = "Volume: #{coffee.humanized_volume}"
+    p
+      = "Price: #{coffee.humanized_price}"
+    p
+      = coffee.description

@@ -9,11 +9,6 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   config.wrappers :vertical_form do |b|
-    b.use :label, error_class: "is-invalid-label"
-    b.use :input, error_class: "is-invalid-input"
-    b.use :error, wrap_with: { tag: :small, class: "form-error is-visible" }
-    b.use :hint, wrap_with: { tag: :p, class: "help-text" }
-
     b.use :html5
     b.use :placeholder
 
@@ -22,9 +17,23 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
+
+    b.use :label, error_class: "is-invalid-label"
+    b.use :input, error_class: "is-invalid-input"
+    b.use :error, wrap_with: { tag: :small, class: "form-error is-visible" }
+    b.use :hint, wrap_with: { tag: :p, class: "help-text" }
   end
 
   config.wrappers :horizontal_form, class: "grid-x grid-padding-x" do |b|
+    b.use :html5
+    b.use :placeholder
+
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+
     b.wrapper :label_wrapper, class: "small-3 cell" do |ba|
       ba.use :label, class: "text-right", error_class: "is-invalid-label"
     end
@@ -34,7 +43,9 @@ SimpleForm.setup do |config|
       ba.use :error, wrap_with: { tag: :small, class: "form-error is-visible" }
       ba.use :hint, wrap_with: { tag: :p, class: "help-text" }
     end
+  end
 
+  config.wrappers :group_form do |b|
     b.use :html5
     b.use :placeholder
 
@@ -43,24 +54,13 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-  end
 
-  config.wrappers :group_form do |b|
     b.wrapper :group, class: "input-group" do |ba|
       ba.use :label, class: "input-group-label", error_class: "is-invalid-label"
       ba.use :input, class: "input-group-field", error_class: "is-invalid-input"
     end
     b.use :error, wrap_with: { tag: :small, class: "form-error is-visible" }
     b.use :hint,  wrap_with: { tag: :p, class: "help-text" }
-
-    b.use :html5
-    b.use :placeholder
-
-    b.optional :maxlength
-    b.optional :minlength
-    b.optional :pattern
-    b.optional :min_max
-    b.optional :readonly
   end
 
   # CSS class for buttons

@@ -1,0 +1,68 @@
+class CommonMap {
+  constructor($commonMap) {
+    this.commonMap = $commonMap;
+
+    this.setupMap();
+  }
+
+  setupMap() {
+    this.coffeeHouses = JSON.parse(this.commonMap.dataset.coffeeHouses);
+    this.map = new google.maps.Map(this.commonMap, this.mapOptions());
+
+    this.addCoffeeHousesMarkers();
+    this.addUserMarker();
+  }
+
+  mapOptions() {
+    return {
+      zoom: 15,
+      center: new google.maps.LatLng(KAZAN_LATITUDE, KAZAN_LONGITUDE)
+    };
+  }
+
+  addCoffeeHousesMarkers() {
+    [...this.coffeeHouses].forEach((coffeeHouse) => {
+      const marker = new (google.maps.Marker)({
+        position: new google.maps.LatLng(coffeeHouse.latitude, coffeeHouse.longitude),
+        icon: "<%= asset_path('coffee_house_marker.png') %>",
+        map: this.map
+      });
+
+      marker.addListener("click", () => {
+        const infoWindow = new google.maps.InfoWindow({
+          content: windowContent(coffeeHouse)
+        });
+        infoWindow.open(this.map, marker);
+      });
+    });
+  }
+
+  windowContent(coffeeHouse) {
+    if (coffeeHouse.description.length > 0) {
+      return`<h6>${coffeeHouse.name}</h6><p>${coffeeHouse.description}</p>`
+    } else {
+      return`<h6>${coffeeHouse.name}</h6>`
+    }
+  }
+
+  addUserMarker() {
+    if (!navigator.geolocation) { return; }
+
+    return navigator.geolocation.getCurrentPosition(position => {
+      const userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      this.map.setCenter(userLatLng);
+      return new (google.maps.Marker)({
+        position: userLatLng,
+        icon: "<%= asset_path('user_marker.png') %>",
+        map: this.map
+      });
+    });
+  }
+}
+
+const COMMON_MAP_SELECTOR = "common-map";
+const $commonMaps = document.getElementsByClassName(COMMON_MAP_SELECTOR);
+
+[...$commonMaps].forEach(($commonMap) => {
+  new CommonMap($commonMap);
+});

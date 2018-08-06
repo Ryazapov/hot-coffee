@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
 
   responders :flash
   respond_to :html
+
+  def current_location
+    request.safe_location
+  end
 end
