@@ -12,10 +12,18 @@ class CoffeeHousesController < ApplicationController
   private
 
   def fetch_coffee_houses
-    CoffeeHouse.near(current_location.coordinates).page(page)
+    NearestOrSearchedCoffeeHousesQuery.new(current_location, keywords).all.page(page)
   end
 
   def page
     params[:page]
+  end
+
+  def keywords
+    params.dig(:query, :keywords)
+  end
+
+  def authorize_resource!
+    authorize! coffee_house
   end
 end

@@ -17,4 +17,8 @@ class CoffeesController < ApplicationController
   def page
     params[:page]
   end
+
+  def authorize_resource!
+    authorize! coffee
+  end
 end

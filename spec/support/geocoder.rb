@@ -20,3 +20,10 @@ Geocoder::Lookup::Test.add_stub(
     "address" => "Profsoyuznaya Ulitsa, 50, Kazan, Russia"
   }]
 )
+
+Geocoder::Lookup::Test.add_stub(
+  [55.754270, 37.621277], [{
+    "coordinates" => [55.754270, 37.621277],
+    "address" => "Red Square, 3, Moscow, Russia"
+  }]
+)
