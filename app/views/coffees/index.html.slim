@@ -9,13 +9,13 @@
         .medium-2.columns
           = f.input :kind, collection: Coffee.translated_kinds, include_blank: true
         .medium-2.columns
-          = f.input :volume_from, as: :integer, min: 0, input_html: { min: 0 }
+          = f.input :volume_from, as: :integer, input_html: { min: 0 }
         .medium-2.columns
-          = f.input :volume_to, as: :integer, min: 0, input_html: { min: 0 }
+          = f.input :volume_to, as: :integer, input_html: { min: 0 }
         .medium-2.columns
-          = f.input :price_from, as: :float, min: 0, input_html: { min: 0 }
+          = f.input :price_from, as: :float, input_html: { min: 0 }
         .medium-2.columns
-          = f.input :price_to, as: :float, min: 0, input_html: { min: 0 }
+          = f.input :price_to, as: :float, input_html: { min: 0 }
         .medium-2.columns
           = f.button :submit, "Search"
 
