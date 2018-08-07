@@ -3,19 +3,19 @@
     h2 = title("Coffees")
 
 .row
-  = simple_form_for(:query, method: :get) do |f|
+  = simple_form_for(filter_coffee_form, method: :get, url: coffees_path) do |f|
     .form-inputs
       .row
         .medium-2.columns
-          = f.input :kind, collection: Coffee.translated_kinds, selected: params.dig(:query, :kind), include_blank: true
+          = f.input :kind, collection: Coffee.translated_kinds, include_blank: true
         .medium-2.columns
-          = f.input :volume_from, as: :integer, input_html: { value: params.dig(:query, :volume_from), min: 0 }
+          = f.input :volume_from, as: :integer, input_html: { min: 0 }
         .medium-2.columns
-          = f.input :volume_to, as: :integer, input_html: { value: params.dig(:query, :volume_to), min: 0 }
+          = f.input :volume_to, as: :integer, input_html: { min: 0 }
         .medium-2.columns
-          = f.input :price_from, as: :float, input_html: { value: params.dig(:query, :price_from), min: 0 }
+          = f.input :price_from, as: :float, input_html: { min: 0 }
         .medium-2.columns
-          = f.input :price_to, as: :float, input_html: { value: params.dig(:query, :price_to), min: 0 }
+          = f.input :price_to, as: :float, input_html: { min: 0 }
         .medium-2.columns
           = f.button :submit, "Search"
 
