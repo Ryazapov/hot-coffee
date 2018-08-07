@@ -1,8 +1,10 @@
 class CoffeesController < ApplicationController
   expose_decorated :coffees, :filtered_coffees
   expose_decorated :coffee
+  expose :filter_coffee_form, -> { FilterCoffeeForm.new(filter_coffee_form_params) }
 
   def index
+    coffees
   end
 
   def show
@@ -19,7 +21,11 @@ class CoffeesController < ApplicationController
   end
 
   def filter_params
-    params.permit(query: %i[kind volume_from volume_to price_from price_to]).dig(:query)&.to_h
+    filter_coffee_form.valid? ? filter_coffee_form_params.to_h : {}
+  end
+
+  def filter_coffee_form_params
+    params.permit(filter_coffee_form: %i[kind volume_from volume_to price_from price_to]).dig(:filter_coffee_form)
   end
 
   def page
