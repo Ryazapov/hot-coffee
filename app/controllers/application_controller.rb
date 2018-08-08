@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   respond_to :html
 
   def current_location
-    request.safe_location
+    request.location
   end
 end
