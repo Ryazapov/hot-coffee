@@ -27,6 +27,7 @@ html class="no-js" lang="en"
 
     javascript:
       App.currentUserData = #{{current_user.to_json}};
+      App.clientCoordinates = #{{client_coordinates.to_json}};
 
     script src="https://maps.googleapis.com/maps/api/js?key=#{ENV.fetch("GOOGLE_API_KEY")}"
     = javascript_include_tag :application

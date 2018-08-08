@@ -48,16 +48,15 @@ class CommonMap {
   }
 
   addUserMarker() {
-    if (!navigator.geolocation) { return; }
+    if (App.clientCoordinates[0] === null) { return; }
 
-    return navigator.geolocation.getCurrentPosition(position => {
-      const userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      this.map.setCenter(userLatLng);
-      return new (google.maps.Marker)({
-        position: userLatLng,
-        icon: "<%= asset_path('user_marker.png') %>",
-        map: this.map
-      });
+    const userLatLng = new google.maps.LatLng(App.clientCoordinates[0], App.clientCoordinates[1]);
+    this.map.setCenter(userLatLng);
+
+    new (google.maps.Marker)({
+      position: userLatLng,
+      icon: "<%= asset_path('user_marker.png') %>",
+      map: this.map
     });
   }
 }

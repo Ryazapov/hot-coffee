@@ -7,8 +7,10 @@
 //= require jquery2
 //= require jquery-ujs
 //= require foundation
+//= require cookie
 //= require constants
 //= require current_user
+//= require client_coordinates
 //= require ckeditor/init
 //= require location_input
 //= require coffee_house_map

@@ -46,12 +46,10 @@ class LocationInput {
   }
 
   changeCenterCoords() {
-    if (!navigator.geolocation) { return; }
+    if (App.clientCoordinates[0] === null) { return; }
 
-    return navigator.geolocation.getCurrentPosition(position => {
-      const center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      if (this.isNewForm()) { this.map.setCenter(center); }
-    });
+    const center = new google.maps.LatLng(App.clientCoordinates[0], App.clientCoordinates[1]);
+    if (this.isNewForm()) { this.map.setCenter(center); }
   }
 
   centerLatLng() {
