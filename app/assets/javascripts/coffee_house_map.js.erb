@@ -21,8 +21,7 @@ class CoffeeHouseMap {
   }
 
   addUserMarker() {
-    if (App.clientCoordinates[0] === null) { return; }
-    const userLatLng = new google.maps.LatLng(App.clientCoordinates[0], App.clientCoordinates[1]);
+    const userLatLng = new google.maps.LatLng(App.currentCoordinates.latitude, App.currentCoordinates.longitude);
 
     new (google.maps.Marker)({
       position: userLatLng,
