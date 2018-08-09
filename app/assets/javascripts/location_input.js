@@ -26,7 +26,6 @@ class LocationInput {
     });
 
     this.addCurrentMarker();
-    this.changeCenterCoords();
   }
 
   mapOptions() {
@@ -45,19 +44,12 @@ class LocationInput {
     });
   }
 
-  changeCenterCoords() {
-    if (!navigator.geolocation) { return; }
-
-    return navigator.geolocation.getCurrentPosition(position => {
-      const center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      if (this.isNewForm()) { this.map.setCenter(center); }
-    });
-  }
-
   centerLatLng() {
-    if (this.isNewForm()) { return new google.maps.LatLng(KAZAN_LATITUDE, KAZAN_LONGITUDE); }
+    const isNewForm = this.isNewForm();
+    const latitude = isNewForm ? App.currentCoordinates.latitude : this.latitudeInput.val();
+    const longitude = isNewForm ? App.currentCoordinates.longitude : this.longitudeInput.val();
 
-    return new google.maps.LatLng(this.latitudeInput.val(), this.longitudeInput.val());
+    return new google.maps.LatLng(latitude, longitude);
   }
 
   isNewForm() {

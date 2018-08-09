@@ -9,8 +9,13 @@ class CommonMap {
     this.coffeeHouses = JSON.parse(this.commonMap.dataset.coffeeHouses);
     this.map = new google.maps.Map(this.commonMap, this.mapOptions());
 
+    this.createUserMarker();
     this.addCoffeeHousesMarkers();
-    this.addUserMarker();
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    document.addEventListener('position:update', () => this.updateUserMarker());
   }
 
   mapOptions() {
@@ -47,18 +52,26 @@ class CommonMap {
     return `/coffee_houses/${coffeeHouse.id}`
   }
 
-  addUserMarker() {
-    if (!navigator.geolocation) { return; }
+  getUserCoordinates() {
+    return new google.maps.LatLng(App.currentCoordinates.latitude, App.currentCoordinates.longitude);
+  }
 
-    return navigator.geolocation.getCurrentPosition(position => {
-      const userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      this.map.setCenter(userLatLng);
-      return new (google.maps.Marker)({
-        position: userLatLng,
-        icon: "<%= asset_path('user_marker.png') %>",
-        map: this.map
-      });
+  createUserMarker() {
+    const userLatLng = this.getUserCoordinates();
+
+    this.map.setCenter(userLatLng);
+    this.userMarker = new (google.maps.Marker)({
+      position: userLatLng,
+      icon: "<%= asset_path('user_marker.png') %>",
+      map: this.map
     });
+  }
+
+  updateUserMarker() {
+    const userLatLng = this.getUserCoordinates();
+
+    this.map.setCenter(userLatLng);
+    this.userMarker.setPosition(userLatLng);
   }
 }
 
