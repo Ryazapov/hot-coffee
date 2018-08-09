@@ -10,7 +10,12 @@ class ClientCoordinates {
         cookie.set('longitude', position.coords.longitude, { path: "/" });
 
         if (App.clientCoordinates[0] === null) { location.reload(); }
-      }, ()=>{}, options);
+      },
+      () => {
+        cookie.remove('latitude');
+        cookie.remove('longitude');
+        if (App.clientCoordinates[0] !== null) { location.reload(); }
+      }, options);
     }
   }
 }
